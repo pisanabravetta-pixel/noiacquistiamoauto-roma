@@ -138,6 +138,9 @@ footer {
 </div>
 
  <form action="https://formsubmit.co/pisanabravetta@gmail.com" method="POST">
+<input type="hidden" name="_subject" value="Nuova richiesta valutazione auto">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_next" value="https://noiacquistiamoauto-roma.vercel.app/?ok">
 
   
 
@@ -193,8 +196,16 @@ footer {
   <input type="tel" name="telefono" required>
 
   <button type="submit">Valuta ora</button>
+<p style="font-size:13px;color:#666;text-align:center;margin-top:10px;">
+  🔒 I tuoi dati sono protetti – risposta entro 24 ore
+</p>
 
 </form>
+<script>
+if (window.location.search.includes("ok")) {
+  alert("Grazie! La tua richiesta è stata inviata. Ti ricontatteremo a breve.");
+}
+</script>
 
 </main>
 
