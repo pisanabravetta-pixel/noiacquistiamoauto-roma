@@ -38,23 +38,27 @@
 <main>
   <h2>Valuta la tua auto</h2>
 
-  <label>Marca</label>
-  <input type="text" placeholder="Es. Fiat" />
+  <form action="https://formsubmit.co/pisanabravetta@gmail.com" method="POST">
+    
+    <input type="hidden" name="_subject" value="Nuova richiesta valutazione auto - Roma">
+    <input type="hidden" name="_captcha" value="false">
 
-  <label>Modello</label>
-  <input type="text" placeholder="Es. Panda" />
+    <label>Marca</label>
+    <input type="text" name="marca" required>
 
-  <label>Anno</label>
-  <input type="number" placeholder="Es. 2018" />
+    <label>Modello</label>
+    <input type="text" name="modello" required>
 
-  <label>Kilometri</label>
-  <input type="number" placeholder="Es. 85000" />
+    <label>Anno</label>
+    <input type="number" name="anno" required>
 
-  <a href="https://wa.me/393203272238" target="_blank">
-  <button>Scrivi su WhatsApp</button>
-</a>
+    <label>Kilometri</label>
+    <input type="number" name="km" required>
 
+    <button type="submit">Invia richiesta</button>
+  </form>
 </main>
+
 
 <footer>
   © NoiAcquistiamoAuto Roma
