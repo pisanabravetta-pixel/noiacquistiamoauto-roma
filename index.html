@@ -1,324 +1,107 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <title>Noi Acquistiamo Auto Roma</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Valutazione auto usate a Roma. Vendita rapida e trasparente." />
-  
-
+<meta charset="UTF-8">
+<title>Noi Acquistiamo Auto Roma</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Valutazione auto usate a Roma. Vendita rapida e trasparente.">
 
 <style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
-  color: #333;
-}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f6f8;color:#333}
 
 /* HEADER */
-header {
-  background: #ffffff;
-  padding: 25px 10px;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
-}
+header{background:#fff;padding:25px 10px;text-align:center;border-bottom:1px solid #ddd}
 
-/* CONTENUTO PRINCIPALE */
-main {
-  max-width: 520px;
-  margin: 0 auto;
-  padding: 30px 15px;
-}
-
-/* TITOLO */
-main h2 {
-  text-align: center;
-  margin-bottom: 25px;
-}
+/* MAIN */
+main{max-width:520px;margin:0 auto;padding:30px 15px}
 
 /* FORM */
-form {
-  background: #ffffff;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
+form{background:#fff;padding:25px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.1)}
+label{display:block;margin-top:15px;font-weight:bold;font-size:14px}
+select,input{width:100%;padding:10px;margin-top:6px;border-radius:6px;border:1px solid #ccc}
+button{margin-top:25px;width:100%;padding:12px;background:#e10600;color:#fff;border:none;border-radius:6px;font-size:16px;font-weight:bold;cursor:pointer}
+button:hover{background:#b90500}
 
-/* CAMPI */
-label {
-  display: block;
-  margin-top: 15px;
-  font-weight: bold;
-  font-size: 14px;
-}
+/* STEP */
+.step{display:none;animation:fade .3s ease}
+.step.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
-select, input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 6px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-}
+/* PROGRESS */
+.progress{width:100%;background:#eee;height:8px;border-radius:6px;margin-bottom:25px;overflow:hidden}
+.progress-bar{height:100%;width:0;background:linear-gradient(90deg,#e10600,#ff4d4d);transition:.4s}
 
-/* BOTTONE */
-button {
-  margin-top: 25px;
-  width: 100%;
-  padding: 12px;
-  background: #e10600;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-}
+/* SUCCESS */
+.success-message{display:none;background:#fff;padding:30px;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,.12);text-align:center}
+.success-message h2{color:#1b8f3a}
 
-button:hover {
-  background: #b90500;
-}
-
-/* SEZIONE SOTTO */
-section {
-  max-width: 600px;
-  margin: 40px auto;
-  background: #fff;
-  padding: 30px;
-  border-radius: 8px;
-  text-align: center;
-}
+/* WHY US */
+section{max-width:600px;margin:40px auto;background:#fff;padding:30px;border-radius:8px;text-align:center}
 
 /* FOOTER */
-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 14px;
-  color: #666;
-}
-
-.steps {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  font-size: 13px;
-  color: #777;
-}
-
-.steps span {
-  flex: 1;
-  text-align: center;
-}
-
-
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.success-message {
-  display: none;
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-  text-align: center;
-  animation: fadeSlide 0.6s ease forwards;
-}
-
-.success-message h2 {
-  color: #1b8f3a;
-  margin-bottom: 10px;
-}
-
-@keyframes fadeSlide {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-/* ===== STEP BY STEP FORM ===== */
-.step {
-  display: none;
-  animation: fadeStep 0.4s ease;
-}
-
-.step.active {
-  display: block;
-}
-
-@keyframes fadeStep {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-/* ===== STEP FORM ===== */
-.step {
-  display: none;
-  animation: fadeStep 0.4s ease;
-}
-
-.step.active {
-  display: block;
-}
-
-@keyframes fadeStep {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* ===== PROGRESS BAR ===== */
-.progress {
-  width: 100%;
-  background: #eee;
-  border-radius: 6px;
-  height: 8px;
-  margin-bottom: 25px;
-  overflow: hidden;
-}
-
-.progress-bar {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #e10600, #ff4d4d);
-  transition: width 0.4s ease;
-}
-.loader {
-  width: 50px;
-  height: 50px;
-  border: 5px solid #eee;
-  border-top: 5px solid #e10600;
-  border-radius: 50%;
-  margin: 0 auto;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
+footer{text-align:center;padding:20px;font-size:14px;color:#666}
 </style>
-
-
-   
 </head>
+
 <body>
 
 <header>
-  <div style="font-size:28px;font-weight:bold;letter-spacing:1px;">
+  <div style="font-size:28px;font-weight:bold;">
     <span style="color:#e63946;">NOI</span>ACQUISTIAMO<span style="color:#e63946;">AUTO</span>
   </div>
-  <p style="margin:5px 0 0 0;font-size:14px;">Roma e provincia</p>
+  <p>Roma e provincia</p>
 </header>
 
-
 <main>
-  <div id="form-wrapper">
+<div id="form-wrapper">
 
-    <h2>Valuta la tua auto</h2>
+<h2 style="text-align:center">Valuta la tua auto</h2>
+
 <div class="progress">
   <div class="progress-bar" id="progressBar"></div>
 </div>
-<p id="step-text" style="
-  text-align:center;
-  font-size:15px;
-  margin-bottom:20px;
-  color:#555;
-">
-  Iniziamo dalla marca 🚗
-</p>
 
-    <div class="steps">
-      <span>1. Marca</span>
-      <span>2. Modello</span>
-      <span>3. Anno</span>
-      <span>4. Km</span>
-    </div>
-
-   <form id="autoForm">
+<form id="autoForm">
 
 <!-- STEP 1 -->
 <div class="step active">
   <label>Marca</label>
-  <select id="marca" name="marca" required onchange="aggiornaModelli(); nextStep();">
+  <select id="marca" name="marca" required onchange="aggiornaModelli(); nextStep()">
     <option value="">Seleziona marca</option>
-    <option value="Fiat">Fiat</option>
-    <option value="Volkswagen">Volkswagen</option>
-    <option value="Ford">Ford</option>
-    <option value="BMW">BMW</option>
-    <option value="Audi">Audi</option>
-    <option value="Mercedes">Mercedes</option>
-    <option value="Opel">Opel</option>
-    <option value="Peugeot">Peugeot</option>
-    <option value="Renault">Renault</option>
-    <option value="Toyota">Toyota</option>
+    <option>Fiat</option><option>Volkswagen</option><option>Ford</option>
+    <option>BMW</option><option>Audi</option><option>Mercedes</option>
+    <option>Opel</option><option>Peugeot</option><option>Renault</option><option>Toyota</option>
   </select>
-
-  <button type="button" onclick="nextStep()">Avanti</button>
 </div>
 
 <!-- STEP 2 -->
 <div class="step">
   <label>Modello</label>
- <select id="modello" name="modello" required onchange="nextStep()">
-
+  <select id="modello" name="modello" required onchange="nextStep()">
     <option value="">Seleziona modello</option>
   </select>
-
   <button type="button" onclick="prevStep()">Indietro</button>
- <button type="button" onclick="canProceed()">Continua</button>
-
 </div>
 
 <!-- STEP 3 -->
 <div class="step">
-  <label>Anno di immatricolazione</label>
+  <label>Anno</label>
   <select name="anno" required onchange="nextStep()">
-
     <option value="">Seleziona anno</option>
     <script>
-      for (let y = new Date().getFullYear(); y >= 1995; y--) {
-        document.write(`<option value="${y}">${y}</option>`);
+      for(let y=new Date().getFullYear();y>=1995;y--){
+        document.write(`<option>${y}</option>`)
       }
     </script>
   </select>
-
   <button type="button" onclick="prevStep()">Indietro</button>
-  <button type="button" onclick="nextStep()">Avanti</button>
 </div>
 
 <!-- STEP 4 -->
 <div class="step">
   <label>Chilometri</label>
-  <select name="km" required>
+  <select name="km" required onchange="nextStep()">
     <option value="">Seleziona km</option>
     <option>0 - 50.000</option>
     <option>50.000 - 100.000</option>
@@ -326,303 +109,102 @@ footer {
     <option>150.000 - 200.000</option>
     <option>200.000+</option>
   </select>
-
   <button type="button" onclick="prevStep()">Indietro</button>
-  <button type="button" onclick="nextStep()">Avanti</button>
 </div>
 
 <!-- STEP 5 -->
 <div class="step">
   <label>Nome</label>
   <input type="text" name="nome" required>
-
   <label>Telefono</label>
   <input type="tel" name="telefono" required>
-
   <button type="button" onclick="prevStep()">Indietro</button>
   <button type="submit">Valuta ora</button>
 </div>
 
+</form>
+</div>
 
-    <!-- ✅ UN SOLO MESSAGGIO DI SUCCESSO -->
-    
-
- 
-  
-
-
+<div id="success-message" class="success-message">
+  <h2>✅ Richiesta inviata!</h2>
+  <p>Ti ricontatteremo a breve.</p>
+</div>
 </main>
-<div id="success-message" class="success-message"
-<h2>✅ Richiesta inviata!</h2>
-<p>Grazie, ti ricontatteremo il prima possibile.</p>
-</div>
-<div id="loader-box" style="
-  display:none;
-  background:#ffffff;
-  padding:30px;
-  border-radius:10px;
-  box-shadow:0 6px 20px rgba(0,0,0,0.12);
-  text-align:center;
-">
-  <div class="loader"></div>
-  <h3 style="margin-top:20px;">Stiamo valutando la tua auto…</h3>
-  <p style="color:#666;">Analisi dei dati in corso</p>
-</div>
 
-<div id="whatsapp-box" style="
-  display:none;
-  background:#ffffff;
-  padding:30px;
-  border-radius:10px;
-  box-shadow:0 6px 20px rgba(0,0,0,0.12);
-  text-align:center;
-">
-  <h2>🚀 Valutazione quasi pronta</h2>
-  <p>Scrivici ora su WhatsApp per riceverla subito</p>
-
-  <a href="https://wa.me/393203272238" target="_blank"
-     style="
-       display:inline-block;
-       margin-top:15px;
-       padding:14px 20px;
-       background:#25D366;
-       color:#fff;
-       border-radius:6px;
-       text-decoration:none;
-       font-weight:bold;
-       font-size:16px;
-     ">
-    💬 Contattaci su WhatsApp
-  </a>
-</div>
-     
-<section id="why-us" style="max-width:600px;margin:40px auto;background:#fff;padding:30px;border-radius:8px;text-align:center;">
-
-  <h2>Perché scegliere noi</h2>
-
-  <p>Operiamo esclusivamente su <strong>Roma e provincia</strong> con valutazioni chiare e senza impegno.</p>
-
-  <ul style="list-style:none;padding:0;">
-    <li>✅ Valutazione gratuita</li>
-    <li>✅ Nessun obbligo di vendita</li>
-    <li>✅ Pagamento rapido</li>
-    <li>✅ Assistenza dedicata</li>
-  </ul>
-
-  <p style="margin-top:20px;font-weight:bold;">
-    Compila il modulo e ti ricontattiamo rapidamente.
-  </p>
+<section id="why-us">
+<h2>Perché scegliere noi</h2>
+<ul style="list-style:none;padding:0">
+<li>✅ Valutazione gratuita</li>
+<li>✅ Nessun obbligo</li>
+<li>✅ Pagamento rapido</li>
+<li>✅ Roma e provincia</li>
+</ul>
 </section>
 
+<footer>© NoiAcquistiamoAuto Roma</footer>
 
-<footer>
-  © NoiAcquistiamoAuto Roma
-</footer>
 <script>
-/* ===== MODELLI AUTO ===== */
-const modelli = {
-  Fiat: ["Panda", "500", "Punto", "Tipo", "Doblo"],
-  Volkswagen: ["Golf", "Polo", "Passat", "Tiguan"],
-  Ford: ["Fiesta", "Focus", "Kuga", "Puma"],
-  BMW: ["Serie 1", "Serie 3", "X1", "X3"],
-  Audi: ["A3", "A4", "A6", "Q3", "Q5"],
-  Mercedes: ["Classe A", "Classe C", "Classe E", "GLA", "GLC"],
-  Opel: ["Corsa", "Astra", "Mokka"],
-  Peugeot: ["208", "308", "3008"],
-  Renault: ["Clio", "Captur", "Megane"],
-  Toyota: ["Yaris", "Corolla", "RAV4"]
+/* MODELLI */
+const modelli={
+Fiat:["Panda","500","Punto","Tipo","Doblo"],
+Volkswagen:["Golf","Polo","Passat","Tiguan"],
+Ford:["Fiesta","Focus","Kuga","Puma"],
+BMW:["Serie 1","Serie 3","X1","X3"],
+Audi:["A3","A4","A6","Q3","Q5"],
+Mercedes:["Classe A","Classe C","Classe E","GLA","GLC"],
+Opel:["Corsa","Astra","Mokka"],
+Peugeot:["208","308","3008"],
+Renault:["Clio","Captur","Megane"],
+Toyota:["Yaris","Corolla","RAV4"]
 };
 
-/* ===== AGGIORNA MODELLO ===== */
-function aggiornaModelli() {
-<script>
-const fieldsToSave = ["marca", "modello", "telefono"];
-
-fieldsToSave.forEach(id => {
-  const el = document.querySelector(`[name="${id}"]`);
-  if (!el) return;
-
-  // carica valore salvato
-  if (localStorage.getItem(id)) {
-    el.value = localStorage.getItem(id);
-    if (id === "marca") aggiornaModelli();
-  }
-
-  // salva mentre scrive
-  el.addEventListener("input", () => {
-    localStorage.setItem(id, el.value);
-  });
+function aggiornaModelli(){
+const marca=document.getElementById("marca");
+const modello=document.getElementById("modello");
+modello.innerHTML="<option value=''>Seleziona modello</option>";
+if(modelli[marca.value]){
+modelli[marca.value].forEach(m=>{
+const o=document.createElement("option");
+o.textContent=m;
+modello.appendChild(o);
 });
-</script>
-
-
-
-  const marca = document.getElementById("marca");
-  const modello = document.getElementById("modello");
-
-  modello.innerHTML = "<option value=''>Seleziona modello</option>";
-
-  if (modelli[marca.value]) {
-    modelli[marca.value].forEach(m => {
-      const opt = document.createElement("option");
-      opt.value = m;
-      opt.textContent = m;
-      modello.appendChild(opt);
-    });
-  }
+}
 }
 
-/* ===== INVIO FORM ===== */
-const form = document.getElementById("autoForm");
-const successMessage = document.getElementById("success-message");
-const formWrapper = document.getElementById("form-wrapper");
-const whyUs = document.getElementById("why-us");
+/* STEP */
+let currentStep=0;
+const steps=document.querySelectorAll(".step");
+const progress=document.getElementById("progressBar");
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
+function showStep(i){
+steps.forEach((s,idx)=>s.classList.toggle("active",idx===i));
+progress.style.width=((i)/(steps.length-1))*100+"%";
+}
+function nextStep(){if(currentStep<steps.length-1){currentStep++;showStep(currentStep)}}
+function prevStep(){if(currentStep>0){currentStep--;showStep(currentStep)}}
+showStep(0);
 
-  fetch("https://formsubmit.co/ajax/pisanabravetta@gmail.com", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      marca: form.marca.value,
-      modello: form.modello.value,
-      anno: form.anno.value,
-      km: form.km.value,
-      nome: form.nome.value,
-      telefono: form.telefono.value,
-      _subject: "Nuova richiesta valutazione auto",
-      _captcha: "false"
-    })
-  }).then(() => {
-
-    // nasconde form
-    document.getElementById("form-wrapper").style.display = "none";
-
-    // nasconde "perché scegliere noi"
-    const whyUs = document.getElementById("why-us");
-    if (whyUs) whyUs.style.display = "none";
-
-    // mostra successo
-    successMessage.style.display = "block";
-
-  });
+/* SUBMIT */
+document.getElementById("autoForm").addEventListener("submit",e=>{
+e.preventDefault();
+fetch("https://formsubmit.co/ajax/pisanabravetta@gmail.com",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+marca:autoForm.marca.value,
+modello:autoForm.modello.value,
+anno:autoForm.anno.value,
+km:autoForm.km.value,
+nome:autoForm.nome.value,
+telefono:autoForm.telefono.value,
+_subject:"Nuova richiesta valutazione auto",
+_captcha:"false"
+})
+}).then(()=>{
+document.getElementById("form-wrapper").style.display="none";
+document.getElementById("why-us").style.display="none";
+document.getElementById("success-message").style.display="block";
 });
-
-
-  }
-}
-
-function prevStep() {
-  if (currentStep > 0) {
-    currentStep--;
-    showStep(currentStep);
-  }
-}
-
-// mostra primo step
-showStep(currentStep);
-  
-</script>
-// Tracking pronto (non rompe nulla)
-function trackLead() {
-  if (window.gtag) {
-    gtag('event', 'conversion', {
-      event_category: 'lead',
-      event_label: 'valutazione_auto'
-    });
-  }
-
-  if (window.fbq) {
-    fbq('track', 'Lead');
-  }
-}
-
-<script>
-/* ===== MODELLI AUTO ===== */
-const modelli = {
-  Fiat: ["Panda", "500", "Punto", "Tipo", "Doblo"],
-  Volkswagen: ["Golf", "Polo", "Passat", "Tiguan"],
-  Ford: ["Fiesta", "Focus", "Kuga", "Puma"],
-  BMW: ["Serie 1", "Serie 3", "X1", "X3"],
-  Audi: ["A3", "A4", "A6", "Q3", "Q5"],
-  Mercedes: ["Classe A", "Classe C", "Classe E", "GLA", "GLC"],
-  Opel: ["Corsa", "Astra", "Mokka"],
-  Peugeot: ["208", "308", "3008"],
-  Renault: ["Clio", "Captur", "Megane"],
-  Toyota: ["Yaris", "Corolla", "RAV4"]
-};
-
-/* ===== AGGIORNA MODELLI (FIX DEFINITIVO) ===== */
-function aggiornaModelli() {
-  const marca = document.getElementById("marca");
-  const modello = document.getElementById("modello");
-
-  modello.innerHTML = "<option value=''>Seleziona modello</option>";
-
-  if (modelli[marca.value]) {
-    modelli[marca.value].forEach(m => {
-      const opt = document.createElement("option");
-      opt.value = m;
-      opt.textContent = m;
-      modello.appendChild(opt);
-    });
-  }
-}
-
-/* ===== STEP BY STEP ===== */
-let currentStep = 0;
-const steps = document.querySelectorAll(".step");
-
-function showStep(index) {
-  steps.forEach((step, i) => {
-    step.classList.toggle("active", i === index);
-  });
-}
-
-function nextStep() {
-  if (currentStep < steps.length - 1) {
-    currentStep++;
-    showStep(currentStep);
-  }
-}
-
-function prevStep() {
-  if (currentStep > 0) {
-    currentStep--;
-    showStep(currentStep);
-  }
-}
-
-showStep(currentStep);
-
-/* ===== INVIO FORM ===== */
-const form = document.getElementById("autoForm");
-const successMessage = document.getElementById("success-message");
-const formWrapper = document.getElementById("form-wrapper");
-const whyUs = document.getElementById("why-us");
-
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  fetch("https://formsubmit.co/ajax/pisanabravetta@gmail.com", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      marca: form.marca.value,
-      modello: form.modello.value,
-      anno: form.anno.value,
-      km: form.km.value,
-      nome: form.nome.value,
-      telefono: form.telefono.value,
-      _subject: "Nuova richiesta valutazione auto",
-      _captcha: "false"
-    })
-  }).then(() => {
-    formWrapper.style.display = "none";
-    if (whyUs) whyUs.style.display = "none";
-    successMessage.style.display = "block";
-  });
 });
 </script>
 
