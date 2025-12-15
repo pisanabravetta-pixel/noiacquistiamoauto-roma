@@ -306,6 +306,7 @@ if (window.location.search.includes("ok")) {
   © NoiAcquistiamoAuto Roma
 </footer>
 <script>
+/* ===== MODELLI AUTO ===== */
 const modelli = {
   Fiat: ["Panda", "500", "Punto", "Tipo", "Doblo"],
   Volkswagen: ["Golf", "Polo", "Passat", "Tiguan"],
@@ -319,55 +320,11 @@ const modelli = {
   Toyota: ["Yaris", "Corolla", "RAV4"]
 };
 
-
-  const marca = document.getElementById("marca").value;
-  const modello = document.getElementById("modello");
-
-  modello.innerHTML = "<option value=''>Seleziona modello</option>";
-
-  if (modelli[marca]) {
-    modelli[marca].forEach(m => {
-      const opt = document.createElement("option");
-      opt.value = m;
-      opt.textContent = m;
-      modello.appendChild(opt);
-    });
-  }
-}
-</script>
-<script>
-  if (window.location.search.includes("ok")) {
-    const msg = document.getElementById("success-message");
-    if (msg) {
-      msg.style.display = "block";
-    }
-  }
-</script>
-<script>
-  if (window.location.search.includes("ok")) {
-    const form = document.getElementById("valutazione-form");
-    const msg = document.getElementById("success-message");
-
-    if (form) form.style.display = "none";
-    if (msg) msg.style.display = "block";
-  }
-</script>
-const modelli = {
-  Fiat: ["Panda", "500", "Punto", "Tipo", "Doblo"],
-  Volkswagen: ["Golf", "Polo", "Passat", "Tiguan"],
-  Ford: ["Fiesta", "Focus", "Kuga", "Puma"],
-  BMW: ["Serie 1", "Serie 3", "X1", "X3"],
-  Audi: ["A3", "A4", "A6", "Q3", "Q5"],
-  Mercedes: ["Classe A", "Classe C", "Classe E", "GLA", "GLC"],
-  Opel: ["Corsa", "Astra", "Mokka"],
-  Peugeot: ["208", "308", "3008"],
-  Renault: ["Clio", "Captur", "Megane"],
-  Toyota: ["Yaris", "Corolla", "RAV4"]
-};
-
+/* ===== MENU A TENDINA MODELLO ===== */
 function aggiornaModelli() {
   const marca = document.getElementById("marca").value;
   const modello = document.getElementById("modello");
+
   modello.innerHTML = "<option value=''>Seleziona modello</option>";
 
   if (modelli[marca]) {
@@ -380,18 +337,16 @@ function aggiornaModelli() {
   }
 }
 
-// 👇 INVIO FORM SENZA POPUP
+/* ===== INVIO FORM SENZA POPUP ===== */
 const form = document.getElementById("autoForm");
 const successMessage = document.getElementById("success-message");
 
 form.addEventListener("submit", function (e) {
-  e.preventDefault(); // 🚫 blocca invio classico
+  e.preventDefault();
 
   fetch("https://formsubmit.co/ajax/pisanabravetta@gmail.com", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       marca: form.marca.value,
       modello: form.modello.value,
@@ -408,8 +363,6 @@ form.addEventListener("submit", function (e) {
   });
 });
 </script>
-
-<script>
 
 </body>
 </html>
