@@ -308,8 +308,10 @@ function aggiornaModelli() {
 }
 
 /* ===== INVIO FORM SENZA POPUP ===== */
+<script>
 const form = document.getElementById("autoForm");
 const successMessage = document.getElementById("success-message");
+
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -327,20 +329,12 @@ form.addEventListener("submit", function (e) {
       _captcha: "false"
     })
   }).then(() => {
-  // nasconde form
-  document.getElementById("form-wrapper").style.display = "none";
-
-  // nasconde sezione perché scegliere noi
-  const whyUs = document.getElementById("why-us");
-  if (whyUs) whyUs.style.display = "none";
-
-  // mostra messaggio successo
-  successMessage.style.display = "block";
+    form.style.display = "none";
+    successMessage.style.display = "block";
+  });
 });
-
-});
-
 </script>
+
 
 </body>
 </html>
