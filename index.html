@@ -176,7 +176,8 @@ footer{text-align:center;padding:20px;font-size:14px;color:#666}
 <!-- STEP 3 -->
 <div class="step">
   <label>Anno</label>
-  <select name="anno" required onchange="nextStep()">
+  <select name="anno" required onchange="checkAnno()"
+
     <option value="">Seleziona anno</option>
     <script>
       for(let y=new Date().getFullYear();y>=1995;y--){
