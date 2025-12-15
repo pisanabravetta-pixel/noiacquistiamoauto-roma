@@ -172,6 +172,13 @@ footer{text-align:center;padding:20px;font-size:14px;color:#666}
   </select>
 </div>
 
+function checkAnno() {
+  const anno = document.querySelector('[name="anno"]');
+
+  if (anno.value !== "") {
+    nextStep();
+  }
+}
 
 <!-- STEP 3 -->
 <div class="step">
