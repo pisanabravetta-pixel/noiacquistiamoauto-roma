@@ -557,33 +557,21 @@ form.addEventListener("submit", function (e) {
       _subject: "Nuova richiesta valutazione auto",
       _captcha: "false"
     })
-.then(() => {
-  // 🔥 TRACKING CONVERSIONE (PRONTO PER ADS)
-if (window.gtag) {
-  gtag('event', 'conversion', {
-    event_category: 'lead',
-    event_label: 'valutazione_auto'
+  }).then(() => {
+
+    // nasconde form
+    document.getElementById("form-wrapper").style.display = "none";
+
+    // nasconde "perché scegliere noi"
+    const whyUs = document.getElementById("why-us");
+    if (whyUs) whyUs.style.display = "none";
+
+    // mostra successo
+    successMessage.style.display = "block";
+
   });
-}
-
-if (window.fbq) {
-  fbq('track', 'Lead');
-}
-
-  document.getElementById("form-wrapper").style.display = "none";
-
-  const loader = document.getElementById("loader-box");
-  const whatsapp = document.getElementById("whatsapp-box");
-
-  loader.style.display = "block";
-
-  setTimeout(() => {
-    loader.style.display = "none";
-    whatsapp.style.display = "block";
-  }, 2500);
 });
 
-});
 /* ===== STEP BY STEP LOGIC ===== */
 const steps = document.querySelectorAll(".step");
 let currentStep = 0;
@@ -612,6 +600,19 @@ function prevStep() {
 showStep(currentStep);
   
 </script>
+// Tracking pronto (non rompe nulla)
+function trackLead() {
+  if (window.gtag) {
+    gtag('event', 'conversion', {
+      event_category: 'lead',
+      event_label: 'valutazione_auto'
+    });
+  }
+
+  if (window.fbq) {
+    fbq('track', 'Lead');
+  }
+}
 
 
 </body>
