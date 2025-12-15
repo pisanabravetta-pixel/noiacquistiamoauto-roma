@@ -167,11 +167,11 @@ footer{text-align:center;padding:20px;font-size:14px;color:#666}
 <!-- STEP 2 -->
 <div class="step">
   <label>Modello</label>
-  <select id="modello" name="modello" required onchange="nextStep()">
+  <select id="modello" name="modello" required onchange="checkModello()">
     <option value="">Seleziona modello</option>
   </select>
-  <button type="button" onclick="prevStep()">Indietro</button>
 </div>
+
 
 <!-- STEP 3 -->
 <div class="step">
@@ -271,6 +271,13 @@ o.textContent=m;
 modello.appendChild(o);
 });
 }
+}
+function checkModello() {
+  const modello = document.getElementById("modello");
+
+  if (modello.value !== "") {
+    nextStep();
+  }
 }
 
 /* STEP */
