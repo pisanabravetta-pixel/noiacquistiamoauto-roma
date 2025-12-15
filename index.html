@@ -453,71 +453,7 @@ fieldsToSave.forEach(id => {
 });
 </script>
 
-  <script>
-let currentStep = 0;
-const steps = document.querySelectorAll(".step");
-const progressBar = document.getElementById("progressBar");
 
-function showStep(index) {
-  steps.forEach((step, i) => {
-    step.classList.toggle("active", i === index);
-  });
-
-  const progress = ((index + 1) / steps.length) * 100;
-  progressBar.style.width = progress + "%";
-
-  const texts = [
-    "Iniziamo dalla marca 🚗",
-    "Perfetto! Ora il modello 🔧",
-    "Ottimo 👍 scegli l'anno",
-    "Ultimo step 🔥 quanti km?",
-    "Ci siamo 🚀 lasciaci i contatti"
-  ];
-
-  const stepText = document.getElementById("step-text");
-  if (stepText && texts[index]) {
-    stepText.textContent = texts[index];
-  }
-
-  /* auto scroll mobile */
-  window.scrollTo({
-    top: document.querySelector("main").offsetTop,
-    behavior: "smooth"
-  });
-}
-
-
-function nextStep() {
-  function canProceed() {
-  const activeStep = steps[currentStep];
-  const input = activeStep.querySelector("select, input");
-
-  if (!input || input.value.trim() !== "") {
-    nextStep();
-  } else {
-    input.style.border = "2px solid #e10600";
-    setTimeout(() => {
-      input.style.border = "1px solid #ccc";
-    }, 800);
-  }
-}
-
-  if (currentStep < steps.length - 1) {
-    currentStep++;
-    showStep(currentStep);
-  }
-}
-
-function prevStep() {
-  if (currentStep > 0) {
-    currentStep--;
-    showStep(currentStep);
-  }
-}
-
-/* inizializzazione */
-showStep(currentStep);
-</script>
 
   const marca = document.getElementById("marca");
   const modello = document.getElementById("modello");
@@ -571,20 +507,7 @@ form.addEventListener("submit", function (e) {
   });
 });
 
-/* ===== STEP BY STEP LOGIC ===== */
-const steps = document.querySelectorAll(".step");
-let currentStep = 0;
 
-function showStep(index) {
-  steps.forEach((step, i) => {
-    step.classList.toggle("active", i === index);
-  });
-}
-
-function nextStep() {
-  if (currentStep < steps.length - 1) {
-    currentStep++;
-    showStep(currentStep);
   }
 }
 
@@ -613,6 +536,93 @@ function trackLead() {
   }
 }
 
+<script>
+/* ===== MODELLI AUTO ===== */
+const modelli = {
+  Fiat: ["Panda", "500", "Punto", "Tipo", "Doblo"],
+  Volkswagen: ["Golf", "Polo", "Passat", "Tiguan"],
+  Ford: ["Fiesta", "Focus", "Kuga", "Puma"],
+  BMW: ["Serie 1", "Serie 3", "X1", "X3"],
+  Audi: ["A3", "A4", "A6", "Q3", "Q5"],
+  Mercedes: ["Classe A", "Classe C", "Classe E", "GLA", "GLC"],
+  Opel: ["Corsa", "Astra", "Mokka"],
+  Peugeot: ["208", "308", "3008"],
+  Renault: ["Clio", "Captur", "Megane"],
+  Toyota: ["Yaris", "Corolla", "RAV4"]
+};
+
+/* ===== AGGIORNA MODELLI (FIX DEFINITIVO) ===== */
+function aggiornaModelli() {
+  const marca = document.getElementById("marca");
+  const modello = document.getElementById("modello");
+
+  modello.innerHTML = "<option value=''>Seleziona modello</option>";
+
+  if (modelli[marca.value]) {
+    modelli[marca.value].forEach(m => {
+      const opt = document.createElement("option");
+      opt.value = m;
+      opt.textContent = m;
+      modello.appendChild(opt);
+    });
+  }
+}
+
+/* ===== STEP BY STEP ===== */
+let currentStep = 0;
+const steps = document.querySelectorAll(".step");
+
+function showStep(index) {
+  steps.forEach((step, i) => {
+    step.classList.toggle("active", i === index);
+  });
+}
+
+function nextStep() {
+  if (currentStep < steps.length - 1) {
+    currentStep++;
+    showStep(currentStep);
+  }
+}
+
+function prevStep() {
+  if (currentStep > 0) {
+    currentStep--;
+    showStep(currentStep);
+  }
+}
+
+showStep(currentStep);
+
+/* ===== INVIO FORM ===== */
+const form = document.getElementById("autoForm");
+const successMessage = document.getElementById("success-message");
+const formWrapper = document.getElementById("form-wrapper");
+const whyUs = document.getElementById("why-us");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  fetch("https://formsubmit.co/ajax/pisanabravetta@gmail.com", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      marca: form.marca.value,
+      modello: form.modello.value,
+      anno: form.anno.value,
+      km: form.km.value,
+      nome: form.nome.value,
+      telefono: form.telefono.value,
+      _subject: "Nuova richiesta valutazione auto",
+      _captcha: "false"
+    })
+  }).then(() => {
+    formWrapper.style.display = "none";
+    if (whyUs) whyUs.style.display = "none";
+    successMessage.style.display = "block";
+  });
+});
+</script>
 
 </body>
 </html>
