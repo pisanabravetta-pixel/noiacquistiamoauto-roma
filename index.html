@@ -201,6 +201,10 @@ footer {
 </p>
 
 </form>
+  <div id="success-message" style="display:none; margin-top:20px; padding:15px; background:#e6ffe6; border:1px solid #2ecc71; border-radius:6px; color:#2d7a2d; text-align:center;">
+  ✅ Richiesta inviata con successo!  
+  <br>Ti contatteremo al più presto.
+</div>
 <script>
 if (window.location.search.includes("ok")) {
   alert("Grazie! La tua richiesta è stata inviata. Ti ricontatteremo a breve.");
@@ -259,6 +263,14 @@ function aggiornaModelli() {
     });
   }
 }
+</script>
+<script>
+  if (window.location.search.includes("ok")) {
+    const msg = document.getElementById("success-message");
+    if (msg) {
+      msg.style.display = "block";
+    }
+  }
 </script>
 
 </body>
