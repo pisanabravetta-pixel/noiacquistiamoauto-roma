@@ -153,6 +153,78 @@ footer {
     transform: translateY(0);
   }
 }
+/* ===== STEP BY STEP FORM ===== */
+.step {
+  display: none;
+  animation: fadeStep 0.4s ease;
+}
+
+.step.active {
+  display: block;
+}
+
+@keyframes fadeStep {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* ===== STEP FORM ===== */
+.step {
+  display: none;
+  animation: fadeStep 0.4s ease;
+}
+
+.step.active {
+  display: block;
+}
+
+@keyframes fadeStep {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress {
+  width: 100%;
+  background: #eee;
+  border-radius: 6px;
+  height: 8px;
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #e10600, #ff4d4d);
+  transition: width 0.4s ease;
+}
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #eee;
+  border-top: 5px solid #e10600;
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 </style>
 
@@ -173,6 +245,17 @@ footer {
   <div id="form-wrapper">
 
     <h2>Valuta la tua auto</h2>
+<div class="progress">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+<p id="step-text" style="
+  text-align:center;
+  font-size:15px;
+  margin-bottom:20px;
+  color:#555;
+">
+  Iniziamo dalla marca 🚗
+</p>
 
     <div class="steps">
       <span>1. Marca</span>
@@ -181,66 +264,84 @@ footer {
       <span>4. Km</span>
     </div>
 
-    <form id="autoForm">
+   <form id="autoForm">
 
-      <!-- MARCA -->
-      <label>Marca</label>
-      <select id="marca" name="marca" required onchange="aggiornaModelli()">
-        <option value="">Seleziona marca</option>
-        <option value="Fiat">Fiat</option>
-        <option value="Volkswagen">Volkswagen</option>
-        <option value="Ford">Ford</option>
-        <option value="BMW">BMW</option>
-        <option value="Audi">Audi</option>
-        <option value="Mercedes">Mercedes</option>
-        <option value="Opel">Opel</option>
-        <option value="Peugeot">Peugeot</option>
-        <option value="Renault">Renault</option>
-        <option value="Toyota">Toyota</option>
-      </select>
+<!-- STEP 1 -->
+<div class="step active">
+  <label>Marca</label>
+  <select id="marca" name="marca" required onchange="aggiornaModelli()">
+    <option value="">Seleziona marca</option>
+    <option value="Fiat">Fiat</option>
+    <option value="Volkswagen">Volkswagen</option>
+    <option value="Ford">Ford</option>
+    <option value="BMW">BMW</option>
+    <option value="Audi">Audi</option>
+    <option value="Mercedes">Mercedes</option>
+    <option value="Opel">Opel</option>
+    <option value="Peugeot">Peugeot</option>
+    <option value="Renault">Renault</option>
+    <option value="Toyota">Toyota</option>
+  </select>
 
-      <!-- MODELLO -->
-      <label>Modello</label>
-      <select id="modello" name="modello" required>
-        <option value="">Seleziona prima la marca</option>
-      </select>
+  <button type="button" onclick="nextStep()">Avanti</button>
+</div>
 
-      <!-- ANNO -->
-      <label>Anno di immatricolazione</label>
-      <select name="anno" required>
-        <option value="">Seleziona anno</option>
-        <script>
-          for (let y = new Date().getFullYear(); y >= 1995; y--) {
-            document.write(`<option value="${y}">${y}</option>`);
-          }
-        </script>
-      </select>
+<!-- STEP 2 -->
+<div class="step">
+  <label>Modello</label>
+  <select id="modello" name="modello" required>
+    <option value="">Seleziona modello</option>
+  </select>
 
-      <!-- KM -->
-      <label>Chilometri</label>
-      <select name="km" required>
-        <option value="">Seleziona km</option>
-        <option>0 - 50.000</option>
-        <option>50.000 - 100.000</option>
-        <option>100.000 - 150.000</option>
-        <option>150.000 - 200.000</option>
-        <option>200.000+</option>
-      </select>
+  <button type="button" onclick="prevStep()">Indietro</button>
+ <button type="button" onclick="canProceed()">Continua</button>
 
-      <!-- CONTATTI -->
-      <label>Nome</label>
-      <input type="text" name="nome" required>
+</div>
 
-      <label>Telefono</label>
-      <input type="tel" name="telefono" required>
+<!-- STEP 3 -->
+<div class="step">
+  <label>Anno di immatricolazione</label>
+  <select name="anno" required>
+    <option value="">Seleziona anno</option>
+    <script>
+      for (let y = new Date().getFullYear(); y >= 1995; y--) {
+        document.write(`<option value="${y}">${y}</option>`);
+      }
+    </script>
+  </select>
 
-      <button type="submit">Valuta ora</button>
+  <button type="button" onclick="prevStep()">Indietro</button>
+  <button type="button" onclick="nextStep()">Avanti</button>
+</div>
 
-      <p style="font-size:13px;color:#666;text-align:center;margin-top:10px;">
-        🔒 I tuoi dati sono protetti – risposta entro 24 ore
-      </p>
+<!-- STEP 4 -->
+<div class="step">
+  <label>Chilometri</label>
+  <select name="km" required>
+    <option value="">Seleziona km</option>
+    <option>0 - 50.000</option>
+    <option>50.000 - 100.000</option>
+    <option>100.000 - 150.000</option>
+    <option>150.000 - 200.000</option>
+    <option>200.000+</option>
+  </select>
 
-    </form>
+  <button type="button" onclick="prevStep()">Indietro</button>
+  <button type="button" onclick="nextStep()">Avanti</button>
+</div>
+
+<!-- STEP 5 -->
+<div class="step">
+  <label>Nome</label>
+  <input type="text" name="nome" required>
+
+  <label>Telefono</label>
+  <input type="tel" name="telefono" required>
+
+  <button type="button" onclick="prevStep()">Indietro</button>
+  <button type="submit">Valuta ora</button>
+</div>
+
 
     <!-- ✅ UN SOLO MESSAGGIO DI SUCCESSO -->
     
@@ -254,6 +355,46 @@ footer {
 <h2>✅ Richiesta inviata!</h2>
 <p>Grazie, ti ricontatteremo il prima possibile.</p>
 </div>
+<div id="loader-box" style="
+  display:none;
+  background:#ffffff;
+  padding:30px;
+  border-radius:10px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.12);
+  text-align:center;
+">
+  <div class="loader"></div>
+  <h3 style="margin-top:20px;">Stiamo valutando la tua auto…</h3>
+  <p style="color:#666;">Analisi dei dati in corso</p>
+</div>
+
+<div id="whatsapp-box" style="
+  display:none;
+  background:#ffffff;
+  padding:30px;
+  border-radius:10px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.12);
+  text-align:center;
+">
+  <h2>🚀 Valutazione quasi pronta</h2>
+  <p>Scrivici ora su WhatsApp per riceverla subito</p>
+
+  <a href="https://wa.me/393203272238" target="_blank"
+     style="
+       display:inline-block;
+       margin-top:15px;
+       padding:14px 20px;
+       background:#25D366;
+       color:#fff;
+       border-radius:6px;
+       text-decoration:none;
+       font-weight:bold;
+       font-size:16px;
+     ">
+    💬 Contattaci su WhatsApp
+  </a>
+</div>
+     
 <section id="why-us" style="max-width:600px;margin:40px auto;background:#fff;padding:30px;border-radius:8px;text-align:center;">
 
   <h2>Perché scegliere noi</h2>
@@ -293,6 +434,92 @@ const modelli = {
 
 /* ===== AGGIORNA MODELLO ===== */
 function aggiornaModelli() {
+<script>
+const fieldsToSave = ["marca", "modello", "telefono"];
+
+fieldsToSave.forEach(id => {
+  const el = document.querySelector(`[name="${id}"]`);
+  if (!el) return;
+
+  // carica valore salvato
+  if (localStorage.getItem(id)) {
+    el.value = localStorage.getItem(id);
+    if (id === "marca") aggiornaModelli();
+  }
+
+  // salva mentre scrive
+  el.addEventListener("input", () => {
+    localStorage.setItem(id, el.value);
+  });
+});
+</script>
+
+  <script>
+let currentStep = 0;
+const steps = document.querySelectorAll(".step");
+const progressBar = document.getElementById("progressBar");
+
+function showStep(index) {
+  steps.forEach((step, i) => {
+    step.classList.toggle("active", i === index);
+  });
+
+  const progress = ((index + 1) / steps.length) * 100;
+  progressBar.style.width = progress + "%";
+
+  const texts = [
+    "Iniziamo dalla marca 🚗",
+    "Perfetto! Ora il modello 🔧",
+    "Ottimo 👍 scegli l'anno",
+    "Ultimo step 🔥 quanti km?",
+    "Ci siamo 🚀 lasciaci i contatti"
+  ];
+
+  const stepText = document.getElementById("step-text");
+  if (stepText && texts[index]) {
+    stepText.textContent = texts[index];
+  }
+
+  /* auto scroll mobile */
+  window.scrollTo({
+    top: document.querySelector("main").offsetTop,
+    behavior: "smooth"
+  });
+}
+
+
+function nextStep() {
+  function canProceed() {
+  const activeStep = steps[currentStep];
+  const input = activeStep.querySelector("select, input");
+
+  if (!input || input.value.trim() !== "") {
+    nextStep();
+  } else {
+    input.style.border = "2px solid #e10600";
+    setTimeout(() => {
+      input.style.border = "1px solid #ccc";
+    }, 800);
+  }
+}
+
+  if (currentStep < steps.length - 1) {
+    currentStep++;
+    showStep(currentStep);
+  }
+}
+
+function prevStep() {
+  if (currentStep > 0) {
+    currentStep--;
+    showStep(currentStep);
+  }
+}
+
+/* inizializzazione */
+showStep(currentStep);
+</script>
+
   const marca = document.getElementById("marca");
   const modello = document.getElementById("modello");
 
@@ -330,12 +557,60 @@ form.addEventListener("submit", function (e) {
       _subject: "Nuova richiesta valutazione auto",
       _captcha: "false"
     })
-  }).then(() => {
-    formWrapper.style.display = "none";
-    if (whyUs) whyUs.style.display = "none";
-    successMessage.style.display = "block";
+.then(() => {
+  // 🔥 TRACKING CONVERSIONE (PRONTO PER ADS)
+if (window.gtag) {
+  gtag('event', 'conversion', {
+    event_category: 'lead',
+    event_label: 'valutazione_auto'
   });
+}
+
+if (window.fbq) {
+  fbq('track', 'Lead');
+}
+
+  document.getElementById("form-wrapper").style.display = "none";
+
+  const loader = document.getElementById("loader-box");
+  const whatsapp = document.getElementById("whatsapp-box");
+
+  loader.style.display = "block";
+
+  setTimeout(() => {
+    loader.style.display = "none";
+    whatsapp.style.display = "block";
+  }, 2500);
 });
+
+});
+/* ===== STEP BY STEP LOGIC ===== */
+const steps = document.querySelectorAll(".step");
+let currentStep = 0;
+
+function showStep(index) {
+  steps.forEach((step, i) => {
+    step.classList.toggle("active", i === index);
+  });
+}
+
+function nextStep() {
+  if (currentStep < steps.length - 1) {
+    currentStep++;
+    showStep(currentStep);
+  }
+}
+
+function prevStep() {
+  if (currentStep > 0) {
+    currentStep--;
+    showStep(currentStep);
+  }
+}
+
+// mostra primo step
+showStep(currentStep);
+  
 </script>
 
 
