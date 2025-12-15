@@ -291,12 +291,6 @@ const modelli = {
   Toyota: ["Yaris", "Corolla", "RAV4"]
 };
 
-function aggiornaModelli() {<script>
-const modelli = { ... } // (il tuo codice resta)
-
-function aggiornaModelli() { ... } 
-
-</script>
 
   const marca = document.getElementById("marca").value;
   const modello = document.getElementById("modello");
@@ -329,6 +323,49 @@ function aggiornaModelli() { ... }
     if (form) form.style.display = "none";
     if (msg) msg.style.display = "block";
   }
+</script>
+<script>
+const modelli = {
+  Fiat: ["Panda", "500", "Punto", "Tipo", "Doblo"],
+  Volkswagen: ["Golf", "Polo", "Passat", "Tiguan"],
+  Ford: ["Fiesta", "Focus", "Kuga", "Puma"],
+  BMW: ["Serie 1", "Serie 3", "X1", "X3"],
+  Audi: ["A3", "A4", "A6", "Q3", "Q5"],
+  Mercedes: ["Classe A", "Classe C", "Classe E", "GLA", "GLC"],
+  Opel: ["Corsa", "Astra", "Mokka"],
+  Peugeot: ["208", "308", "3008"],
+  Renault: ["Clio", "Captur", "Megane"],
+  Toyota: ["Yaris", "Corolla", "RAV4"]
+};
+
+function aggiornaModelli() {
+  const marca = document.getElementById("marca").value;
+  const modello = document.getElementById("modello");
+
+  modello.innerHTML = "<option value=''>Seleziona modello</option>";
+
+  if (modelli[marca]) {
+    modelli[marca].forEach(m => {
+      const opt = document.createElement("option");
+      opt.value = m;
+      opt.textContent = m;
+      modello.appendChild(opt);
+    });
+  }
+}
+
+// MESSAGGIO SUCCESSO (senza popup)
+const form = document.getElementById("autoForm");
+const successMessage = document.getElementById("success-message");
+
+if (form) {
+  form.addEventListener("submit", function () {
+    setTimeout(() => {
+      form.style.display = "none";
+      successMessage.style.display = "block";
+    }, 500);
+  });
+}
 </script>
 
 </body>
