@@ -163,7 +163,8 @@ footer {
   <span>4. Km</span>
 </div>
 
- <form id="valutazione-form" action="https://formsubmit.co/pisanabravetta@gmail.com" method="POST">
+<form action="https://formsubmit.co/pisanabravetta@gmail.com" method="POST" id="autoForm">
+
 
 <input type="hidden" name="_subject" value="Nuova richiesta valutazione auto">
 <input type="hidden" name="_captcha" value="false">
@@ -230,6 +231,11 @@ footer {
 </form>
   <div id="success-message">
   <h3>✅ Richiesta inviata!</h3>
+  <p>Grazie, ti ricontatteremo il prima possibile.</p>
+</div>
+
+  <div id="success-message">
+  <h3>✅ Richiesta inviata!</h3>
   <p>Ti contatteremo a breve per la valutazione della tua auto.</p>
 </div>
 
@@ -285,7 +291,24 @@ const modelli = {
   Toyota: ["Yaris", "Corolla", "RAV4"]
 };
 
-function aggiornaModelli() {
+function aggiornaModelli() {<script>
+const modelli = { ... } // (il tuo codice resta)
+
+function aggiornaModelli() { ... } 
+// resta
+
+// 👇 AGGIUNGI QUESTO
+const form = document.getElementById("autoForm");
+const successMessage = document.getElementById("success-message");
+
+form.addEventListener("submit", function () {
+  setTimeout(() => {
+    form.style.display = "none";
+    successMessage.style.display = "block";
+  }, 500);
+});
+</script>
+
   const marca = document.getElementById("marca").value;
   const modello = document.getElementById("modello");
 
