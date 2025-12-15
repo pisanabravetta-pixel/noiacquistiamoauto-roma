@@ -251,7 +251,8 @@ footer {
   </div>
 </main>
 
-<section style="max-width:600px;margin:40px auto;background:#fff;padding:30px;border-radius:8px;text-align:center;">
+<section id="why-us" style="max-width:600px;margin:40px auto;background:#fff;padding:30px;border-radius:8px;text-align:center;">
+
   <h2>Perché scegliere noi</h2>
 
   <p>Operiamo esclusivamente su <strong>Roma e provincia</strong> con valutazioni chiare e senza impegno.</p>
@@ -326,6 +327,8 @@ form.addEventListener("submit", function (e) {
     })
   }).then(() => {
     document.getElementById("form-wrapper").style.display = "none";
+    document.getElementById("why-us").style.display = "none";
+
 successMessage.style.display = "block";
 
   });
