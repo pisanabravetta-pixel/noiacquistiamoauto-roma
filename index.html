@@ -173,11 +173,8 @@ footer {
   <span>4. Km</span>
 </div>
 
-<form 
-  id="autoForm"
-  action="https://formsubmit.co/pisanabravetta@gmail.com"
-  method="POST"
-  target="hidden_iframe">
+<form id="autoForm">
+
 
 
 
@@ -355,7 +352,6 @@ const modelli = {
     if (msg) msg.style.display = "block";
   }
 </script>
-<script>
 const modelli = {
   Fiat: ["Panda", "500", "Punto", "Tipo", "Doblo"],
   Volkswagen: ["Golf", "Polo", "Passat", "Tiguan"],
@@ -372,7 +368,6 @@ const modelli = {
 function aggiornaModelli() {
   const marca = document.getElementById("marca").value;
   const modello = document.getElementById("modello");
-
   modello.innerHTML = "<option value=''>Seleziona modello</option>";
 
   if (modelli[marca]) {
@@ -385,19 +380,36 @@ function aggiornaModelli() {
   }
 }
 
-// MESSAGGIO SUCCESSO (senza popup)
+// 👇 INVIO FORM SENZA POPUP
 const form = document.getElementById("autoForm");
 const successMessage = document.getElementById("success-message");
 
-if (form) {
-  form.addEventListener("submit", function () {
-    setTimeout(() => {
-      form.style.display = "none";
-      successMessage.style.display = "block";
-    }, 500);
+form.addEventListener("submit", function (e) {
+  e.preventDefault(); // 🚫 blocca invio classico
+
+  fetch("https://formsubmit.co/ajax/pisanabravetta@gmail.com", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      marca: form.marca.value,
+      modello: form.modello.value,
+      anno: form.anno.value,
+      km: form.km.value,
+      nome: form.nome.value,
+      telefono: form.telefono.value,
+      _subject: "Nuova richiesta valutazione auto",
+      _captcha: "false"
+    })
+  }).then(() => {
+    form.style.display = "none";
+    successMessage.style.display = "block";
   });
-}
+});
 </script>
+
+<script>
 
 </body>
 </html>
