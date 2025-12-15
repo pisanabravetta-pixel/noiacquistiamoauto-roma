@@ -310,7 +310,6 @@ function aggiornaModelli() {
 /* ===== INVIO FORM SENZA POPUP ===== */
 const form = document.getElementById("autoForm");
 const successMessage = document.getElementById("success-message");
-
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -328,13 +327,19 @@ form.addEventListener("submit", function (e) {
       _captcha: "false"
     })
   }).then(() => {
-    document.getElementById("form-wrapper").style.display = "none";
-    document.getElementById("why-us").style.display = "none";
+  // nasconde form
+  document.getElementById("form-wrapper").style.display = "none";
 
-successMessage.style.display = "block";
+  // nasconde sezione perché scegliere noi
+  const whyUs = document.getElementById("why-us");
+  if (whyUs) whyUs.style.display = "none";
 
-  });
+  // mostra messaggio successo
+  successMessage.style.display = "block";
 });
+
+});
+
 </script>
 
 </body>
