@@ -148,6 +148,31 @@ footer {
     transform: translateY(0);
   }
 }
+.success-message {
+  display: none;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  text-align: center;
+  animation: fadeSlide 0.6s ease forwards;
+}
+
+.success-message h2 {
+  color: #1b8f3a;
+  margin-bottom: 10px;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 </style>
 
@@ -246,6 +271,11 @@ footer {
 </p>
 
 </form>
+<div id="success-message" class="success-message">
+  <h2>✅ Richiesta inviata!</h2>
+  <p>Grazie, ti ricontatteremo il prima possibile.</p>
+</div>
+
 </div>
 
 <iframe name="hidden_iframe" style="display:none;"></iframe>
