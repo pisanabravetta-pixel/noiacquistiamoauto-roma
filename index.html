@@ -138,6 +138,16 @@ footer {
     transform: translateY(0);
   }
 }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 </style>
 
@@ -163,7 +173,12 @@ footer {
   <span>4. Km</span>
 </div>
 
-<form action="https://formsubmit.co/pisanabravetta@gmail.com" method="POST" id="autoForm">
+<form 
+  id="autoForm"
+  action="https://formsubmit.co/pisanabravetta@gmail.com"
+  method="POST"
+  target="hidden_iframe">
+
 
 
 <input type="hidden" name="_subject" value="Nuova richiesta valutazione auto">
@@ -229,6 +244,22 @@ footer {
 </p>
 
 </form>
+<iframe name="hidden_iframe" style="display:none;"></iframe>
+
+<div id="success-message" style="
+  display:none;
+  margin-top:30px;
+  background:#e6ffe6;
+  border:1px solid #4caf50;
+  padding:20px;
+  border-radius:8px;
+  text-align:center;
+  animation: fadeIn 0.6s ease-in-out;
+">
+  <h3 style="color:#2e7d32;">✅ Richiesta inviata con successo</h3>
+  <p>Ti ricontatteremo al più presto.</p>
+</div>
+
   <div id="success-message">
   <h3>✅ Richiesta inviata!</h3>
   <p>Grazie, ti ricontatteremo il prima possibile.</p>
