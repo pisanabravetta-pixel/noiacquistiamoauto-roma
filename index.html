@@ -24,9 +24,24 @@ main {
 /* FORM */
 form{background:#fff;padding:25px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.1)}
 label{display:block;margin-top:15px;font-weight:bold;font-size:14px}
+label {
+  display: block;
+  margin-top: 18px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #222;
+}
+
 select,input{width:100%;padding:10px;margin-top:6px;border-radius:6px;border:1px solid #ccc}
+select:focus,
+input:focus {
+  outline: none;
+  border-color: #e10600;
+  box-shadow: 0 0 0 2px rgba(225, 6, 0, 0.15);
+}
+
 button {
-  margin-top: 25px;
+  margin-top: 22px;
   width: 100%;
   padding: 14px;
   background: linear-gradient(90deg, #e10600, #ff4d4d);
@@ -36,8 +51,14 @@ button {
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(225,6,0,0.35);
+}
+
 
 button:hover {
   transform: translateY(-2px);
