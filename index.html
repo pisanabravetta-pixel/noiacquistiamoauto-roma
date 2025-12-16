@@ -551,6 +551,85 @@ input:focus {
 ">
   © NoiAcquistiamoAuto Roma
 </footer>
+<script>
+/* ===== MODELLI ===== */
+const modelli = {
+  Fiat:["Panda","500","Punto","Tipo","Doblo"],
+  Volkswagen:["Golf","Polo","Passat","Tiguan"],
+  Ford:["Fiesta","Focus","Kuga","Puma"],
+  BMW:["Serie 1","Serie 3","X1","X3"],
+  Audi:["A3","A4","A6","Q3","Q5"],
+  Mercedes:["Classe A","Classe C","Classe E","GLA","GLC"],
+  Opel:["Corsa","Astra","Mokka"],
+  Peugeot:["208","308","3008"],
+  Renault:["Clio","Captur","Megane"],
+  Toyota:["Yaris","Corolla","RAV4"]
+};
+
+function aggiornaModelli(){
+  const marca = document.getElementById("marca");
+  const modello = document.getElementById("modello");
+
+  modello.innerHTML = "<option value=''>Seleziona modello</option>";
+
+  if (modelli[marca.value]) {
+    modelli[marca.value].forEach(m => {
+      const opt = document.createElement("option");
+      opt.value = m;
+      opt.textContent = m;
+      modello.appendChild(opt);
+    });
+  }
+}
+
+/* ===== STEP SYSTEM ===== */
+let currentStep = 0;
+
+const steps = document.querySelectorAll(".step");
+const progress = document.getElementById("progressBar");
+const stepText = document.getElementById("step-text");
+
+const texts = [
+  "Passaggio 1 di 5 – Marca",
+  "Passaggio 2 di 5 – Modello",
+  "Passaggio 3 di 5 – Anno",
+  "Passaggio 4 di 5 – Chilometri",
+  "Passaggio 5 di 5 – Contatti"
+];
+
+function showStep(index){
+  steps.forEach((step, i) => {
+    step.classList.toggle("active", i === index);
+  });
+
+  if (progress) {
+    progress.style.width =
+      (index / (steps.length - 1)) * 100 + "%";
+  }
+
+  if (stepText && texts[index]) {
+    stepText.textContent = texts[index];
+  }
+}
+
+function nextStep(){
+  if (currentStep < steps.length - 1) {
+    currentStep++;
+    showStep(currentStep);
+  }
+}
+
+function prevStep(){
+  if (currentStep > 0) {
+    currentStep--;
+    showStep(currentStep);
+  }
+}
+
+/* INIT */
+showStep(0);
+</script>
+
 </section>
 <script>
 /* MODELLI AUTO */
