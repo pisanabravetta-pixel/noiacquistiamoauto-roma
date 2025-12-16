@@ -471,7 +471,7 @@ input:focus {
 </div>
 
 </form>
-
+</div>
 <div id="loader-box" style="display:none;text-align:center">
   <h3>Stiamo valutando la tua auto…</h3>
 </div>
@@ -538,16 +538,25 @@ function prevStep(){
 showStep(0);
 
 /* ===== SUBMIT ===== */
-document.getElementById("autoForm").addEventListener("submit",e=>{
+<script>
+document.getElementById("autoForm").addEventListener("submit", function(e){
   e.preventDefault();
 
-  document.getElementById("autoForm").style.display="none";
-  document.getElementById("loader-box").style.display="block";
+  const formWrapper = document.getElementById("form-wrapper");
+  const loader = document.getElementById("loader-box");
+  const success = document.getElementById("success-message");
 
-  setTimeout(()=>{
-    document.getElementById("loader-box").style.display="none";
-    document.getElementById("success-message").style.display="block";
-  },2000);
+  // nasconde form
+  formWrapper.style.display = "none";
+
+  // mostra loader
+  loader.style.display = "block";
+
+  // simula valutazione
+  setTimeout(() => {
+    loader.style.display = "none";
+    success.style.display = "block";
+  }, 2200);
 });
 </script>
 
