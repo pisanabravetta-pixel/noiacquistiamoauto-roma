@@ -408,23 +408,24 @@ input:focus {
 <div class="step active">
   <label>Marca</label>
   <p class="field-help">Seleziona la marca della tua auto</p>
-<select id="marca" name="marca" required onchange="aggiornaModelli(); nextStep();">
 
+  <select id="marca" name="marca" required onchange="aggiornaModelli()">
     <option value="">Seleziona marca</option>
-    <option value="Fiat">Fiat</option>
-    <option value="Volkswagen">Volkswagen</option>
-    <option value="Ford">Ford</option>
-    <option value="BMW">BMW</option>
-    <option value="Audi">Audi</option>
-    <option value="Mercedes">Mercedes</option>
-    <option value="Opel">Opel</option>
-    <option value="Peugeot">Peugeot</option>
-    <option value="Renault">Renault</option>
-    <option value="Toyota">Toyota</option>
+    <option>Fiat</option>
+    <option>Volkswagen</option>
+    <option>Ford</option>
+    <option>BMW</option>
+    <option>Audi</option>
+    <option>Mercedes</option>
+    <option>Opel</option>
+    <option>Peugeot</option>
+    <option>Renault</option>
+    <option>Toyota</option>
   </select>
 
-  <button type="button" onclick="validateAndNext()">Continua →</button>
+  <button type="button" onclick="nextStep()">Continua →</button>
 </div>
+
 
 <!-- STEP 2 -->
 <div class="step">
