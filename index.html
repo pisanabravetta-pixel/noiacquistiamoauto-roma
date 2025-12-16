@@ -408,7 +408,8 @@ input:focus {
 <div class="step active">
   <label>Marca</label>
   <p class="field-help">Seleziona la marca della tua auto</p>
-  <select id="marca" name="marca" required onchange="aggiornaModelli(); nextStep();">
+
+  <select id="marca" name="marca" required onchange="handleMarcaChange()">
     <option value="">Seleziona marca</option>
     <option value="Fiat">Fiat</option>
     <option value="Volkswagen">Volkswagen</option>
@@ -421,6 +422,8 @@ input:focus {
     <option value="Renault">Renault</option>
     <option value="Toyota">Toyota</option>
   </select>
+
+  <button type="button" onclick="validateAndNext()">Continua →</button>
 </div>
 
 <!-- STEP 2 -->
@@ -510,6 +513,32 @@ if (annoSelect && annoSelect.options.length === 1) {
 }
 
 function aggiornaModelli(){
+<script>
+function handleMarcaChange() {
+  aggiornaModelli();
+  validateAndNext();
+}
+
+function validateAndNext() {
+  const current = steps[currentStep];
+  const field = current.querySelector("select");
+
+  if (!field || field.value === "") {
+    field.style.border = "2px solid #e10600";
+    field.classList.add("shake");
+
+    setTimeout(() => {
+      field.style.border = "";
+      field.classList.remove("shake");
+    }, 600);
+
+    return;
+  }
+
+  nextStep();
+}
+</script>
+
   const marca = document.getElementById("marca").value;
   const modello = document.getElementById("modello");
   modello.innerHTML = "<option value=''>Seleziona modello</option>";
