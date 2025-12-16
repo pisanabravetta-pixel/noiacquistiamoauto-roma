@@ -538,6 +538,83 @@ function validateAndNext() {
   nextStep();
 }
 
+
+<script>
+/* ===== MODELLI ===== */
+const modelli = {
+  Fiat:["Panda","500","Punto","Tipo","Doblo"],
+  Volkswagen:["Golf","Polo","Passat","Tiguan"],
+  Ford:["Fiesta","Focus","Kuga","Puma"],
+  BMW:["Serie 1","Serie 3","X1","X3"],
+  Audi:["A3","A4","A6","Q3","Q5"],
+  Mercedes:["Classe A","Classe C","Classe E","GLA","GLC"],
+  Opel:["Corsa","Astra","Mokka"],
+  Peugeot:["208","308","3008"],
+  Renault:["Clio","Captur","Megane"],
+  Toyota:["Yaris","Corolla","RAV4"]
+};
+
+function aggiornaModelli(){
+  const marca = document.getElementById("marca").value;
+  const modello = document.getElementById("modello");
+  modello.innerHTML = "<option value=''>Seleziona modello</option>";
+
+  if(modelli[marca]){
+    modelli[marca].forEach(m=>{
+      const o = document.createElement("option");
+      o.value = m;
+      o.textContent = m;
+      modello.appendChild(o);
+    });
+  }
+}
+
+/* ===== STEP SYSTEM ===== */
+let currentStep = 0;
+const steps = document.querySelectorAll(".step");
+
+function showStep(i){
+  steps.forEach((s,idx)=>{
+    s.classList.toggle("active", idx === i);
+  });
+}
+
+function nextStep(){
+  const field = steps[currentStep].querySelector("select, input");
+  if(field && field.value === "") return;
+
+  if(currentStep < steps.length - 1){
+    currentStep++;
+    showStep(currentStep);
+  }
+}
+
+function prevStep(){
+  if(currentStep > 0){
+    currentStep--;
+    showStep(currentStep);
+  }
+}
+
+showStep(0);
+
+/* ===== SUBMIT ===== */
+const form = document.getElementById("autoForm");
+const formWrapper = document.getElementById("form-wrapper");
+const loader = document.getElementById("loader-box");
+const success = document.getElementById("success-message");
+
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+
+  formWrapper.style.display = "none";
+  loader.style.display = "block";
+
+  setTimeout(() => {
+    loader.style.display = "none";
+    success.style.display = "block";
+  }, 2200);
+});
 </script>
 
 </body>
