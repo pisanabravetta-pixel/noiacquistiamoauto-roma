@@ -411,7 +411,7 @@ input:focus {
   <div class="step active">
     <label>Marca</label>
     <p class="field-help">Seleziona la marca della tua auto</p>
-    <select id="marca" name="marca" required onchange="aggiornaModelli(); nextStep();">
+    <select id="marca" name="marca" required>
       <option value="">Seleziona marca</option>
       <option value="Fiat">Fiat</option>
       <option value="Volkswagen">Volkswagen</option>
@@ -424,33 +424,39 @@ input:focus {
       <option value="Renault">Renault</option>
       <option value="Toyota">Toyota</option>
     </select>
+
+    <button type="button" onclick="nextStep()">Avanti →</button>
   </div>
 
   <!-- STEP 2 -->
   <div class="step">
     <label>Modello</label>
     <p class="field-help">Scegli il modello corretto</p>
-    <select id="modello" name="modello" required onchange="nextStep();">
+    <select id="modello" name="modello" required>
       <option value="">Seleziona modello</option>
     </select>
+
     <button type="button" onclick="prevStep()">← Indietro</button>
+    <button type="button" onclick="nextStep()">Avanti →</button>
   </div>
 
   <!-- STEP 3 -->
   <div class="step">
     <label>Anno di immatricolazione</label>
     <p class="field-help">Anno indicato sul libretto</p>
-    <select id="anno" name="anno" required onchange="nextStep();">
+    <select id="anno" name="anno" required>
       <option value="">Seleziona anno</option>
     </select>
+
     <button type="button" onclick="prevStep()">← Indietro</button>
+    <button type="button" onclick="nextStep()">Avanti →</button>
   </div>
 
   <!-- STEP 4 -->
   <div class="step">
     <label>Chilometri</label>
     <p class="field-help">Puoi indicare anche un valore approssimativo</p>
-    <select name="km" required onchange="nextStep();">
+    <select name="km" required>
       <option value="">Seleziona km</option>
       <option>0 - 50.000</option>
       <option>50.000 - 100.000</option>
@@ -458,7 +464,9 @@ input:focus {
       <option>150.000 - 200.000</option>
       <option>200.000+</option>
     </select>
+
     <button type="button" onclick="prevStep()">← Indietro</button>
+    <button type="button" onclick="nextStep()">Avanti →</button>
   </div>
 
   <!-- STEP 5 -->
@@ -477,13 +485,13 @@ input:focus {
 </div>
 
 <!-- LOADER -->
-<div id="loader-box" style="display:none;text-align:center;margin-top:40px;">
+<div id="loader-box" style="display:none;text-align:center;margin:40px 0;">
   <h3>⏳ Stiamo valutando la tua auto…</h3>
   <p>Analisi dei dati in corso</p>
 </div>
 
 <!-- SUCCESS -->
-<div id="success-message" style="display:none;text-align:center;margin-top:40px;">
+<div id="success-message" style="display:none;text-align:center;margin:40px 0;">
   <h2>✅ Richiesta inviata!</h2>
   <p>Ti ricontatteremo a breve.</p>
 </div>
@@ -494,22 +502,12 @@ input:focus {
     width:100%;
     max-width:520px;
     padding:24px;
-    background:#ffffff;
+    background:#fff;
     border-radius:10px;
-    box-shadow:0 6px 16px rgba(0,0,0,0.08);
-    text-align:center;
-  ">
-    <h2 style="margin-bottom:20px;">Perché scegliere noi</h2>
-    <ul style="
-      list-style:none;
-      padding:0;
-      margin:0;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      align-items:center;
-      font-size:15px;
-    ">
+    box-shadow:0 6px 16px rgba(0,0,0,.08);
+    text-align:center;">
+    <h2>Perché scegliere noi</h2>
+    <ul style="list-style:none;padding:0;">
       <li>✅ Valutazione gratuita</li>
       <li>❌ Nessun obbligo</li>
       <li>⚡ Pagamento rapido</li>
@@ -518,21 +516,20 @@ input:focus {
   </section>
 </section>
 
-<footer style="text-align:center;font-size:14px;color:#666;margin-bottom:20px;">
+<footer style="text-align:center;font-size:14px;color:#666;">
   © NoiAcquistiamoAuto Roma
 </footer>
 
-<!-- JS UNICO E CORRETTO -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
   /* ANNI */
-  const annoSelect = document.getElementById("anno");
+  const anno = document.getElementById("anno");
   for (let y = new Date().getFullYear(); y >= 1995; y--) {
-    const opt = document.createElement("option");
-    opt.value = y;
-    opt.textContent = y;
-    annoSelect.appendChild(opt);
+    const o = document.createElement("option");
+    o.value = y;
+    o.textContent = y;
+    anno.appendChild(o);
   }
 
   /* MODELLI */
@@ -549,30 +546,28 @@ document.addEventListener("DOMContentLoaded", function () {
     Toyota:["Yaris","Corolla","RAV4"]
   };
 
-  window.aggiornaModelli = function () {
-    const marca = document.getElementById("marca").value;
+  document.getElementById("marca").addEventListener("change", function () {
     const modello = document.getElementById("modello");
     modello.innerHTML = "<option value=''>Seleziona modello</option>";
-
-    if (modelli[marca]) {
-      modelli[marca].forEach(m => {
+    if (modelli[this.value]) {
+      modelli[this.value].forEach(m => {
         const o = document.createElement("option");
         o.value = m;
         o.textContent = m;
         modello.appendChild(o);
       });
     }
-  };
+  });
 
   /* STEP SYSTEM */
   let currentStep = 0;
   const steps = document.querySelectorAll(".step");
 
-  function showStep(i) {
+  window.showStep = i => {
     steps.forEach((s, idx) => s.classList.toggle("active", idx === i));
-  }
+  };
 
-  window.nextStep = function () {
+  window.nextStep = () => {
     const field = steps[currentStep].querySelector("select,input");
     if (field && field.value === "") {
       field.style.border = "2px solid red";
@@ -585,7 +580,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  window.prevStep = function () {
+  window.prevStep = () => {
     if (currentStep > 0) {
       currentStep--;
       showStep(currentStep);
@@ -595,20 +590,15 @@ document.addEventListener("DOMContentLoaded", function () {
   showStep(0);
 
   /* SUBMIT */
-  const form = document.getElementById("autoForm");
-  const wrapper = document.getElementById("form-wrapper");
-  const loader = document.getElementById("loader-box");
-  const success = document.getElementById("success-message");
-
-  form.addEventListener("submit", function (e) {
+  document.getElementById("autoForm").addEventListener("submit", e => {
     e.preventDefault();
-    wrapper.style.display = "none";
-    loader.style.display = "block";
+    document.getElementById("form-wrapper").style.display = "none";
+    document.getElementById("loader-box").style.display = "block";
 
     setTimeout(() => {
-      loader.style.display = "none";
-      success.style.display = "block";
-    }, 2200);
+      document.getElementById("loader-box").style.display = "none";
+      document.getElementById("success-message").style.display = "block";
+    }, 2500);
   });
 
 });
