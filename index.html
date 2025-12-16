@@ -266,6 +266,16 @@ button:hover {
 
   <!-- FORM -->
   <div id="form-wrapper">
+<!-- STEP TEXT -->
+<div id="step-text" style="
+  text-align:center;
+  font-size:14px;
+  font-weight:600;
+  color:#111;
+  margin:12px 0 14px 0;
+">
+  Passaggio 1 di 5 – Marca
+</div>
 
     <!-- PROGRESS BAR -->
     <div class="progress-wrap">
@@ -401,17 +411,26 @@ const steps=document.querySelectorAll(".step");
 const progress=document.getElementById("progressBar");
 
 function showStep(i){
-  steps.forEach((s,idx)=>{
-    s.classList.toggle("active", idx === i);
-  });
+  steps.forEach((s,idx)=>s.classList.toggle("active",idx===i));
 
-  const percent = (i / (steps.length - 1)) * 100;
-  document.getElementById("progressBar").style.width = percent + "%";
+  // progress bar
+  progress.style.width = (i / (steps.length - 1)) * 100 + "%";
+
+  // testo step
+  const texts = [
+    "Passaggio 1 di 5 – Marca",
+    "Passaggio 2 di 5 – Modello",
+    "Passaggio 3 di 5 – Anno",
+    "Passaggio 4 di 5 – Chilometri",
+    "Passaggio 5 di 5 – Contatti"
+  ];
+
+  const stepText = document.getElementById("step-text");
+  if (stepText && texts[i]) {
+    stepText.textContent = texts[i];
+  }
 }
 
-function nextStep(){if(currentStep<steps.length-1){currentStep++;showStep(currentStep)}}
-function prevStep(){if(currentStep>0){currentStep--;showStep(currentStep)}}
-showStep(0);
 
 /* SUBMIT */
 document.getElementById("autoForm").addEventListener("submit",e=>{
