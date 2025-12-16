@@ -554,6 +554,31 @@ input:focus {
 </section>
 <script>
 /* MODELLI AUTO */
+
+  progress.style.width =
+    (index / (steps.length - 1)) * 100 + "%";
+
+  if (stepText && texts[index]) {
+    stepText.textContent = texts[index];
+  }
+}
+
+function nextStep() {
+  if (currentStep < steps.length - 1) {
+    currentStep++;
+    showStep(currentStep);
+  }
+}
+
+function prevStep() {
+  if (currentStep > 0) {
+    currentStep--;
+    showStep(currentStep);
+  }
+}
+
+showStep(0);
+
 const modelli = {
   Fiat:["Panda","500","Punto","Tipo","Doblo"],
   Volkswagen:["Golf","Polo","Passat","Tiguan"],
