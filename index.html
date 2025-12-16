@@ -235,6 +235,22 @@ input:focus {
 .shake {
   animation: shake 0.3s;
 }
+/* ===== LOADER ===== */
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #eee;
+  border-top: 5px solid #e10600;
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 </style>
 </head>
@@ -468,6 +484,18 @@ input:focus {
   <h2>✅ Richiesta inviata!</h2>
   <p>Ti ricontatteremo a breve.</p>
 </div>
+<div id="loader-box" style="
+  display:none;
+  background:#ffffff;
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.12);
+  text-align:center;
+">
+  <div class="loader"></div>
+  <h3 style="margin-top:20px;">Stiamo valutando la tua auto…</h3>
+  <p style="color:#666;">Analisi dei dati in corso</p>
+</div>
 
 <section style="display:flex; justify-content:center; margin:40px 0;">
 
@@ -606,11 +634,20 @@ document.getElementById("autoForm").addEventListener("submit", e => {
       _subject: "Nuova richiesta valutazione auto",
       _captcha: "false"
     })
-  }).then(() => {
-    document.getElementById("form-wrapper").style.display="none";
-    document.getElementById("why-us").style.display="none";
-    document.getElementById("success-message").style.display="block";
-  });
+  .then(() => {
+  formWrapper.style.display = "none";
+  if (whyUs) whyUs.style.display = "none";
+
+  // mostra loader
+  document.getElementById("loader-box").style.display = "block";
+
+  // dopo 2.5s mostra successo
+  setTimeout(() => {
+    document.getElementById("loader-box").style.display = "none";
+    successMessage.style.display = "block";
+  }, 2500);
+});
+
 });
 /* ===== STEP 7 – Controllo campo obbligatorio ===== */
 function nextStep() {
