@@ -402,152 +402,85 @@ input:focus {
   🔒 Dati protetti &nbsp;•&nbsp; 💰 Valutazione gratuita &nbsp;•&nbsp; ❌ Nessun obbligo
 </div>
 
-  <!-- STEP 1 -->
-  <div class="step active">
-    <label>Marca</label>
-    <p class="field-help">Seleziona la marca della tua auto</p>
-    <select id="marca" name="marca" required onchange="aggiornaModelli(); nextStep()">
-      <option value="">Seleziona marca</option>
-      <option value="Fiat">Fiat</option>
-      <option value="Volkswagen">Volkswagen</option>
-      <option value="Ford">Ford</option>
-      <option value="BMW">BMW</option>
-      <option value="Audi">Audi</option>
-      <option value="Mercedes">Mercedes</option>
-      <option value="Opel">Opel</option>
-      <option value="Peugeot">Peugeot</option>
-      <option value="Renault">Renault</option>
-      <option value="Toyota">Toyota</option>
-    </select>
-  </div>
+  <form id="autoForm">
 
-  <!-- STEP 2 -->
-  <div class="step">
-    <label>Modello</label>
-    <p class="field-help">Scegli il modello corretto</p>
-    <select id="modello" name="modello" required onchange="nextStep()">
-      <option value="">Seleziona modello</option>
-    </select>
-    <button type="button" class="btn-secondary" onclick="prevStep()">← Indietro</button>
-  </div>
-
-  <!-- STEP 3 -->
-  <div class="step">
-    <label>Anno di immatricolazione</label>
-    <p class="field-help">Anno indicato sul libretto</p>
-    <select id="anno" name="anno" required onchange="nextStep()">
-      <option value="">Seleziona anno</option>
-      <script>
-        for (let y = new Date().getFullYear(); y >= 1995; y--) {
-          document.write(`<option value="${y}">${y}</option>`);
-        }
-      </script>
-    </select>
-    <button type="button" class="btn-secondary" onclick="prevStep()">← Indietro</button>
-<button type="button" class="btn-primary" onclick="nextStep()">Continua →</button>
-  </div>
-
-  <!-- STEP 4 -->
-  <div class="step">
-    <label>Chilometri</label>
-    <p class="field-help">Puoi indicare anche un valore approssimativo</p>
-    <select name="km" required onchange="nextStep()">
-      <option value="">Seleziona km</option>
-      <option>0 - 50.000</option>
-      <option>50.000 - 100.000</option>
-      <option>100.000 - 150.000</option>
-      <option>150.000 - 200.000</option>
-      <option>200.000+</option>
-    </select>
-    <button type="button" class="btn-secondary" onclick="prevStep()">← Indietro</button>
-  </div>
-
-  <!-- STEP 5 -->
-  <div class="step">
-    <label>Nome</label>
-    <p class="field-help">Solo per sapere come chiamarti</p>
-    <input type="text" name="nome" required>
-
-    <label>Telefono</label>
-    <p class="field-help">Ti ricontatteremo solo per la valutazione</p>
-    <input type="tel" name="telefono" required>
-
-    <button type="button" onclick="prevStep()">Indietro</button>
-   <button type="submit">Ricevi valutazione gratuita</button>
-</form>
+<!-- STEP 1 -->
+<div class="step active">
+  <label>Marca</label>
+  <p class="field-help">Seleziona la marca della tua auto</p>
+  <select id="marca" name="marca" required onchange="aggiornaModelli(); nextStep();">
+    <option value="">Seleziona marca</option>
+    <option>Fiat</option>
+    <option>Volkswagen</option>
+    <option>Ford</option>
+    <option>BMW</option>
+    <option>Audi</option>
+    <option>Mercedes</option>
+    <option>Opel</option>
+    <option>Peugeot</option>
+    <option>Renault</option>
+    <option>Toyota</option>
+  </select>
 </div>
 
-<div id="success-message" class="success-message" style="display:none">
+<!-- STEP 2 -->
+<div class="step">
+  <label>Modello</label>
+  <p class="field-help">Scegli il modello corretto</p>
+  <select id="modello" name="modello" required onchange="nextStep();">
+    <option value="">Seleziona modello</option>
+  </select>
+  <button type="button" onclick="prevStep()">← Indietro</button>
+</div>
+
+<!-- STEP 3 -->
+<div class="step">
+  <label>Anno di immatricolazione</label>
+  <p class="field-help">Anno indicato sul libretto</p>
+  <select id="anno" name="anno" required onchange="nextStep();">
+    <option value="">Seleziona anno</option>
+  </select>
+  <button type="button" onclick="prevStep()">← Indietro</button>
+</div>
+
+<!-- STEP 4 -->
+<div class="step">
+  <label>Chilometri</label>
+  <p class="field-help">Puoi indicare anche un valore approssimativo</p>
+  <select name="km" required onchange="nextStep();">
+    <option value="">Seleziona km</option>
+    <option>0 - 50.000</option>
+    <option>50.000 - 100.000</option>
+    <option>100.000 - 150.000</option>
+    <option>150.000 - 200.000</option>
+    <option>200.000+</option>
+  </select>
+  <button type="button" onclick="prevStep()">← Indietro</button>
+</div>
+
+<!-- STEP 5 -->
+<div class="step">
+  <label>Nome</label>
+  <input type="text" name="nome" required>
+
+  <label>Telefono</label>
+  <input type="tel" name="telefono" required>
+
+  <button type="button" onclick="prevStep()">← Indietro</button>
+  <button type="submit">Ricevi valutazione gratuita</button>
+</div>
+
+</form>
+
+<div id="loader-box" style="display:none;text-align:center">
+  <h3>Stiamo valutando la tua auto…</h3>
+</div>
+
+<div id="success-message" style="display:none;text-align:center">
   <h2>✅ Richiesta inviata!</h2>
   <p>Ti ricontatteremo a breve.</p>
 </div>
-<div id="loader-box" style="
-  display:none;
-  background:#ffffff;
-  padding:30px;
-  border-radius:12px;
-  box-shadow:0 6px 20px rgba(0,0,0,0.12);
-  text-align:center;
-">
-  <div class="loader"></div>
-  <h3 style="margin-top:20px;">Stiamo valutando la tua auto…</h3>
-  <p style="color:#666;">Analisi dei dati in corso</p>
-</div>
 
-<section style="display:flex; justify-content:center; margin:40px 0;">
-
-<!-- WHY US WRAPPER -->
-<div style="
-  width:100%;
-  display:flex;
-  justify-content:center;
-">
-
-  <section id="why-us" style="
-  width:100%;
-  max-width:520px;
-  margin:40px auto;
-  padding:24px;
-  background:#ffffff;
-  border-radius:10px;
-  box-shadow:0 6px 16px rgba(0,0,0,0.08);
-  text-align:center;
-">
-
-  <h2 style="
-    margin-bottom:20px;
-    font-size:22px;
-    color:#111;
-  ">
-    Perché scegliere noi
-  </h2>
-
-  <ul style="
-    list-style:none;
-    padding:0;
-    margin:0;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:12px;
-    font-size:15px;
-    color:#333;
-  ">
-    <li>✅ <strong>Valutazione gratuita</strong></li>
-    <li>❌ Nessun obbligo</li>
-    <li>⚡ Pagamento rapido</li>
-    <li>📍 Roma e provincia</li>
-  </ul>
-
-<footer style="
-  width:100%;
-  margin:24px auto 16px auto;
-  text-align:center;
-  font-size:14px;
-  color:#666;
-">
-  © NoiAcquistiamoAuto Roma
-</footer>
 <script>
 /* ===== MODELLI ===== */
 const modelli = {
@@ -564,90 +497,39 @@ const modelli = {
 };
 
 function aggiornaModelli(){
-  const marca = document.getElementById("marca");
+  const marca = document.getElementById("marca").value;
   const modello = document.getElementById("modello");
-
   modello.innerHTML = "<option value=''>Seleziona modello</option>";
 
-  if (modelli[marca.value]) {
-    modelli[marca.value].forEach(m => {
-      const opt = document.createElement("option");
-      opt.value = m;
-      opt.textContent = m;
-      modello.appendChild(opt);
+  if(modelli[marca]){
+    modelli[marca].forEach(m=>{
+      const o = document.createElement("option");
+      o.value = m;
+      o.textContent = m;
+      modello.appendChild(o);
     });
   }
 }
 
 /* ===== STEP SYSTEM ===== */
 let currentStep = 0;
-
 const steps = document.querySelectorAll(".step");
-const progress = document.getElementById("progressBar");
-const stepText = document.getElementById("step-text");
 
-const texts = [
-  "Passaggio 1 di 5 – Marca",
-  "Passaggio 2 di 5 – Modello",
-  "Passaggio 3 di 5 – Anno",
-  "Passaggio 4 di 5 – Chilometri",
-  "Passaggio 5 di 5 – Contatti"
-];
-
-function showStep(index){
-  steps.forEach((step, i) => {
-    step.classList.toggle("active", i === index);
-  });
-
-  if (progress) {
-    progress.style.width =
-      (index / (steps.length - 1)) * 100 + "%";
-  }
-
-  if (stepText && texts[index]) {
-    stepText.textContent = texts[index];
-  }
+function showStep(i){
+  steps.forEach((s,idx)=>s.classList.toggle("active", idx===i));
 }
 
 function nextStep(){
-  if (currentStep < steps.length - 1) {
+  const field = steps[currentStep].querySelector("select,input");
+  if(field && field.value==="") return;
+  if(currentStep < steps.length-1){
     currentStep++;
     showStep(currentStep);
   }
 }
 
 function prevStep(){
-  if (currentStep > 0) {
-    currentStep--;
-    showStep(currentStep);
-  }
-}
-
-/* INIT */
-showStep(0);
-</script>
-
-</section>
-<script>
-/* MODELLI AUTO */
-
-  progress.style.width =
-    (index / (steps.length - 1)) * 100 + "%";
-
-  if (stepText && texts[index]) {
-    stepText.textContent = texts[index];
-  }
-}
-
-function nextStep() {
-  if (currentStep < steps.length - 1) {
-    currentStep++;
-    showStep(currentStep);
-  }
-}
-
-function prevStep() {
-  if (currentStep > 0) {
+  if(currentStep>0){
     currentStep--;
     showStep(currentStep);
   }
@@ -655,124 +537,18 @@ function prevStep() {
 
 showStep(0);
 
-const modelli = {
-  Fiat:["Panda","500","Punto","Tipo","Doblo"],
-  Volkswagen:["Golf","Polo","Passat","Tiguan"],
-  Ford:["Fiesta","Focus","Kuga","Puma"],
-  BMW:["Serie 1","Serie 3","X1","X3"],
-  Audi:["A3","A4","A6","Q3","Q5"],
-  Mercedes:["Classe A","Classe C","Classe E","GLA","GLC"],
-  Opel:["Corsa","Astra","Mokka"],
-  Peugeot:["208","308","3008"],
-  Renault:["Clio","Captur","Megane"],
-  Toyota:["Yaris","Corolla","RAV4"]
-};
-
-function aggiornaModelli() {
-  const marca = document.getElementById("marca").value;
-  const modello = document.getElementById("modello");
-  modello.innerHTML = "<option value=''>Seleziona modello</option>";
-
-  if (modelli[marca]) {
-    modelli[marca].forEach(m => {
-      const opt = document.createElement("option");
-      opt.value = m;
-      opt.textContent = m;
-      modello.appendChild(opt);
-    });
-  }
-}
-
-/* STEP LOGIC */
-let currentStep = 0;
-const steps = document.querySelectorAll(".step");
-const progress = document.getElementById("progressBar");
-
-function showStep(i) {
-  steps.forEach((s,idx)=>s.classList.toggle("active", idx === i));
-  progress.style.width = (i / (steps.length - 1)) * 100 + "%";
-
-  const texts = [
-    "Passaggio 1 di 5 – Marca",
-    "Passaggio 2 di 5 – Modello",
-    "Passaggio 3 di 5 – Anno",
-    "Passaggio 4 di 5 – Chilometri",
-    "Passaggio 5 di 5 – Contatti"
-  ];
-  document.getElementById("step-text").textContent = texts[i];
-}
-
-function nextStep() {
-  if (currentStep < steps.length - 1) {
-    currentStep++;
-    showStep(currentStep);
-  }
-}
-
-function prevStep() {
-  if (currentStep > 0) {
-    currentStep--;
-    showStep(currentStep);
-  }
-}
-
-showStep(0);
-
-/* SUBMIT */
-document.getElementById("autoForm").addEventListener("submit", e => {
+/* ===== SUBMIT ===== */
+document.getElementById("autoForm").addEventListener("submit",e=>{
   e.preventDefault();
 
-  fetch("https://formsubmit.co/ajax/pisanabravetta@gmail.com", {
-    method:"POST",
-    headers:{ "Content-Type":"application/json" },
-    body: JSON.stringify({
-      marca: autoForm.marca.value,
-      modello: autoForm.modello.value,
-      anno: autoForm.anno.value,
-      km: autoForm.km.value,
-      nome: autoForm.nome.value,
-      telefono: autoForm.telefono.value,
-      _subject: "Nuova richiesta valutazione auto",
-      _captcha: "false"
-    })
-  .then(() => {
-  formWrapper.style.display = "none";
-  if (whyUs) whyUs.style.display = "none";
+  document.getElementById("autoForm").style.display="none";
+  document.getElementById("loader-box").style.display="block";
 
-  // mostra loader
-  document.getElementById("loader-box").style.display = "block";
-
-  // dopo 2.5s mostra successo
-  setTimeout(() => {
-    document.getElementById("loader-box").style.display = "none";
-    successMessage.style.display = "block";
-  }, 2500);
+  setTimeout(()=>{
+    document.getElementById("loader-box").style.display="none";
+    document.getElementById("success-message").style.display="block";
+  },2000);
 });
-
-});
-/* ===== STEP 7 – Controllo campo obbligatorio ===== */
-function nextStep() {
-  const current = steps[currentStep];
-  const field = current.querySelector("select, input");
-
-  if (field && field.value === "") {
-    field.style.border = "2px solid #e10600";
-    field.classList.add("shake");
-
-    setTimeout(() => {
-      field.style.border = "1px solid #ccc";
-      field.classList.remove("shake");
-    }, 600);
-
-    return; // BLOCCA AVANZAMENTO
-  }
-
-  if (currentStep < steps.length - 1) {
-    currentStep++;
-    showStep(currentStep);
-  }
-}
-
 </script>
 
 </body>
