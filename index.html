@@ -183,6 +183,12 @@ button:active {
   text-align: center;
   box-shadow: 0 4px 14px rgba(0,0,0,0.18);
 }
+.field-help {
+  margin: 4px 0 10px 0;
+  font-size: 13px;
+  color: #6b7280;
+  text-align: center;
+}
 
 </style>
 </head>
@@ -337,6 +343,7 @@ button:active {
   <!-- STEP 1 -->
   <div class="step active">
     <label>Marca</label>
+    <p class="field-help">Seleziona la marca della tua auto</p>
     <select id="marca" name="marca" required onchange="aggiornaModelli(); nextStep()">
       <option value="">Seleziona marca</option>
       <option value="Fiat">Fiat</option>
@@ -355,6 +362,7 @@ button:active {
   <!-- STEP 2 -->
   <div class="step">
     <label>Modello</label>
+    <p class="field-help">Scegli il modello corretto</p>
     <select id="modello" name="modello" required onchange="nextStep()">
       <option value="">Seleziona modello</option>
     </select>
@@ -364,6 +372,7 @@ button:active {
   <!-- STEP 3 -->
   <div class="step">
     <label>Anno di immatricolazione</label>
+    <p class="field-help">Anno indicato sul libretto</p>
     <select id="anno" name="anno" required onchange="nextStep()">
       <option value="">Seleziona anno</option>
       <script>
@@ -378,6 +387,7 @@ button:active {
   <!-- STEP 4 -->
   <div class="step">
     <label>Chilometri</label>
+    <p class="field-help">Puoi indicare anche un valore approssimativo</p>
     <select name="km" required onchange="nextStep()">
       <option value="">Seleziona km</option>
       <option>0 - 50.000</option>
@@ -392,9 +402,11 @@ button:active {
   <!-- STEP 5 -->
   <div class="step">
     <label>Nome</label>
+    <p class="field-help">Solo per sapere come chiamarti</p>
     <input type="text" name="nome" required>
 
     <label>Telefono</label>
+    <p class="field-help">Ti ricontatteremo solo per la valutazione</p>
     <input type="tel" name="telefono" required>
 
     <button type="button" onclick="prevStep()">Indietro</button>
