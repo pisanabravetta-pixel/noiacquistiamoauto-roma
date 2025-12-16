@@ -190,12 +190,6 @@ button:hover {
 </section>
 </div>
 
-<div id="form-wrapper">
-<!-- PROGRESS BAR -->
-<div class="progress-wrap">
-  <div id="progressBar"></div>
-</div>
-
   <div style="
   background:#1f2937;
   color:#ffffff;
@@ -241,142 +235,60 @@ button:hover {
 </div>
  
 <main>
-  <div id="form-wrapper"
-
-  <!-- PROGRESS BAR -->
-  <div class="progress-wrap">
-    <div id="progressBar"></div>
-  </div>
-
-  <!-- STEP 1 -->
-  <div class="step active">
 
   <!-- TRUST BOX -->
-<div style="
-  background:#e10600;
-  color:#ffffff;
-  padding:16px;
-  border-radius:10px;
-  font-size:15px;
-  margin-bottom:18px;
-  box-shadow:0 6px 16px rgba(0,0,0,0.12);
-  text-align:center;
-">
-  👇 Compila il modulo in meno di <strong>30 secondi</strong><br>
-  <span style="opacity:0.9">
-    Dati protetti • Valutazione gratuita
-  </span>
-</div>
-
-<!-- DESCRIZIONE -->
-<p style="
-  text-align:center;
-  margin:0 auto 18px auto;
-  max-width:520px;
-  color:#444;
-  font-size:15px;
-">
-  Inserisci i dati dell’auto e ricevi una valutazione gratuita, senza impegno.
-</p>
-
-<!-- TRUST INDICATORS -->
-<div style="
-  text-align:center;
-  margin-bottom:24px;
-  font-size:15px;
-  color:#333;
-  line-height:1.6;
-">
-  <div>✅ <strong>Valutazione gratuita</strong></div>
-  <div>❌ Nessun obbligo di vendita</div>
-  <div>📍 Roma e provincia</div>
-  <div>⏱ Risposta rapida</div>
-</div>
-  <h1 style="
-  text-align:center;
-  font-size:28px;
-  font-weight:700;
-  margin-bottom:12px;
-">
-  Valuta la tua auto a Roma
-</h1>
-<p style="
-  font-size:16px;
-  color:#4b5563;
-  margin-bottom:18px;
-  text-align:center;
-">
-  Valutazione gratuita e senza impegno.
-</p>
-
-
-  
   <div style="
-  background:#e10600;
-  color:#ffffff;
-  padding:16px;
-  border-radius:10px;
-  font-size:15px;
-  margin-bottom:12px;
-  box-shadow:0 6px 16px rgba(0,0,0,0.12);
-">
-  
-</div>
-    <div style="
-  background:#111827;
-  color:#ffffff;
-  padding:14px;
-  border-radius:10px;
-  font-size:14px;
-  margin-bottom:18px;
-  text-align:center;
-">
-
-    ⭐ <strong>Oltre 1.000 auto valutate</strong><br>
-    Roma e provincia • Nessun obbligo di vendita
-  </div>
-
-  <div style="
-  background:#e10600;
-  color:#ffffff;
-  padding:16px;
-  border-radius:10px;
-  font-size:15px;
-  margin-bottom:12px;
-  box-shadow:0 6px 16px rgba(0,0,0,0.12);
-  text-align:center;
-">
+    background:#e10600;
+    color:#ffffff;
+    padding:16px;
+    border-radius:10px;
+    font-size:15px;
+    margin-bottom:18px;
+    box-shadow:0 6px 16px rgba(0,0,0,0.12);
+    text-align:center;
+  ">
     👇 Compila il modulo in meno di <strong>30 secondi</strong><br>
-    <span style="opacity:0.85">
+    <span style="opacity:0.9">
       Dati protetti • Valutazione gratuita
     </span>
   </div>
 
-</div>
-<!-- FINE HERO TRUST -->
+  <!-- DESCRIZIONE -->
+  <p style="
+    text-align:center;
+    margin:0 auto 18px auto;
+    max-width:520px;
+    color:#444;
+    font-size:15px;
+  ">
+    Inserisci i dati dell’auto e ricevi una valutazione gratuita, senza impegno.
+  </p>
 
-<form id="autoForm" style="margin-top:10px;">
+  <!-- FORM -->
+  <div id="form-wrapper">
 
+    <!-- PROGRESS BAR -->
+    <div class="progress-wrap">
+      <div id="progressBar"></div>
+    </div>
 
-<!-- STEP 1 -->
-<div class="step active">
- <div style="
-  text-align:center;
-  font-size:14px;
-  margin-bottom:14px;
-  color:#374151;
-">
-  Inserisci i dati della tua auto<br>
-  <strong>ricevi una valutazione gratuita e senza impegno</strong>
-</div>
- <label>Marca</label>
-  <select id="marca" name="marca" required onchange="aggiornaModelli(); nextStep()">
-    <option value="">Seleziona marca</option>
-    <option>Fiat</option><option>Volkswagen</option><option>Ford</option>
-    <option>BMW</option><option>Audi</option><option>Mercedes</option>
-    <option>Opel</option><option>Peugeot</option><option>Renault</option><option>Toyota</option>
-  </select>
-</div>
+    <!-- STEP 1 -->
+    <div class="step active">
+      <label>Marca</label>
+      <select id="marca" name="marca" required onchange="aggiornaModelli(); nextStep()">
+        <option value="">Seleziona marca</option>
+        <option>Fiat</option>
+        <option>Volkswagen</option>
+        <option>Ford</option>
+        <option>BMW</option>
+        <option>Audi</option>
+        <option>Mercedes</option>
+        <option>Opel</option>
+        <option>Peugeot</option>
+        <option>Renault</option>
+        <option>Toyota</option>
+      </select>
+    </div>
 
 <!-- STEP 2 -->
 <div class="step">
