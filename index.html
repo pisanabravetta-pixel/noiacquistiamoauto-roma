@@ -408,18 +408,18 @@ input:focus {
 <div class="step active">
   <label>Marca</label>
   <p class="field-help">Seleziona la marca della tua auto</p>
- <select id="marca" name="marca" required onchange="aggiornaModelli()">
+  <select id="marca" name="marca" required onchange="aggiornaModelli(); nextStep();">
     <option value="">Seleziona marca</option>
-    <option>Fiat</option>
-    <option>Volkswagen</option>
-    <option>Ford</option>
-    <option>BMW</option>
-    <option>Audi</option>
-    <option>Mercedes</option>
-    <option>Opel</option>
-    <option>Peugeot</option>
-    <option>Renault</option>
-    <option>Toyota</option>
+    <option value="Fiat">Fiat</option>
+    <option value="Volkswagen">Volkswagen</option>
+    <option value="Ford">Ford</option>
+    <option value="BMW">BMW</option>
+    <option value="Audi">Audi</option>
+    <option value="Mercedes">Mercedes</option>
+    <option value="Opel">Opel</option>
+    <option value="Peugeot">Peugeot</option>
+    <option value="Renault">Renault</option>
+    <option value="Toyota">Toyota</option>
   </select>
 </div>
 
@@ -481,6 +481,7 @@ input:focus {
   <p>Ti ricontatteremo a breve.</p>
 </div>
 
+
 <script>
 /* ===== MODELLI ===== */
 const modelli = {
@@ -521,15 +522,16 @@ function showStep(i){
 
 function nextStep(){
   const field = steps[currentStep].querySelector("select,input");
-  if(field && field.value==="") return;
-  if(currentStep < steps.length-1){
+  if(field && field.value === "") return;
+
+  if(currentStep < steps.length - 1){
     currentStep++;
     showStep(currentStep);
   }
 }
 
 function prevStep(){
-  if(currentStep>0){
+  if(currentStep > 0){
     currentStep--;
     showStep(currentStep);
   }
@@ -538,46 +540,21 @@ function prevStep(){
 showStep(0);
 
 /* ===== SUBMIT ===== */
-<script>
-document.getElementById("autoForm").addEventListener("submit", function(e){
-  e.preventDefault();
-
-  const formWrapper = document.getElementById("form-wrapper");
-  const loader = document.getElementById("loader-box");
-  const success = document.getElementById("success-message");
-
-  // nasconde form
-  formWrapper.style.display = "none";
-
-  // mostra loader
-  loader.style.display = "block";
-
-  // simula valutazione
-  setTimeout(() => {
-    loader.style.display = "none";
-    success.style.display = "block";
-  }, 2200);
-});
-</script>
-<script>
 const form = document.getElementById("autoForm");
+const formWrapper = document.getElementById("form-wrapper");
 const loader = document.getElementById("loader-box");
 const success = document.getElementById("success-message");
 
 form.addEventListener("submit", function(e){
   e.preventDefault();
 
-  // NASCONDE FORM
-  form.style.display = "none";
-
-  // MOSTRA LOADER
+  formWrapper.style.display = "none";
   loader.style.display = "block";
 
-  // SIMULA VALUTAZIONE
   setTimeout(() => {
     loader.style.display = "none";
     success.style.display = "block";
-  }, 2500);
+  }, 2200);
 });
 </script>
 
