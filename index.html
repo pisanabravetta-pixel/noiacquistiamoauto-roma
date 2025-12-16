@@ -590,16 +590,26 @@ document.addEventListener("DOMContentLoaded", function () {
   showStep(0);
 
   /* SUBMIT */
-  document.getElementById("autoForm").addEventListener("submit", e => {
-    e.preventDefault();
-    document.getElementById("form-wrapper").style.display = "none";
-    document.getElementById("loader-box").style.display = "block";
+  document.getElementById("autoForm").addEventListener("submit", function(e){
+  e.preventDefault();
 
-    setTimeout(() => {
-      document.getElementById("loader-box").style.display = "none";
-      document.getElementById("success-message").style.display = "block";
-    }, 2500);
-  });
+  const formWrapper = document.getElementById("form-wrapper");
+  const loader = document.getElementById("loader-box");
+  const success = document.getElementById("success-message");
+
+  // NASCONDE FORM
+  formWrapper.style.display = "none";
+
+  // MOSTRA LOADER
+  loader.style.display = "block";
+
+  // DURATA VALUTAZIONE (4 SECONDI)
+  setTimeout(function(){
+    loader.style.display = "none";
+    success.style.display = "block";
+  }, 4000);
+});
+
 
 });
 </script>
