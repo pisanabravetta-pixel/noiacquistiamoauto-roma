@@ -120,6 +120,22 @@ button:hover {
 .step.active {
   margin-top: 20px;
 }
+/* PROGRESS BAR */
+.progress-wrap{
+  width:100%;
+  height:6px;
+  background:#e5e7eb;
+  border-radius:10px;
+  overflow:hidden;
+  margin:18px 0 24px 0;
+}
+
+#progressBar{
+  width:0%;
+  height:100%;
+  background:#e10600;
+  transition:width .3s ease;
+}
 
 </style>
 </head>
@@ -175,6 +191,11 @@ button:hover {
 </div>
 
 <div id="form-wrapper">
+<!-- PROGRESS BAR -->
+<div class="progress-wrap">
+  <div id="progressBar"></div>
+</div>
+
   <div style="
   background:#1f2937;
   color:#ffffff;
@@ -459,9 +480,14 @@ const steps=document.querySelectorAll(".step");
 const progress=document.getElementById("progressBar");
 
 function showStep(i){
-steps.forEach((s,idx)=>s.classList.toggle("active",idx===i));
-progress.style.width=((i)/(steps.length-1))*100+"%";
+  steps.forEach((s,idx)=>{
+    s.classList.toggle("active", idx === i);
+  });
+
+  const percent = (i / (steps.length - 1)) * 100;
+  document.getElementById("progressBar").style.width = percent + "%";
 }
+
 function nextStep(){if(currentStep<steps.length-1){currentStep++;showStep(currentStep)}}
 function prevStep(){if(currentStep>0){currentStep--;showStep(currentStep)}}
 showStep(0);
