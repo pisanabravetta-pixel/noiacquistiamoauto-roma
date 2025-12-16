@@ -147,6 +147,31 @@ button:hover {
   background:#e10600;
   transition:width .3s ease;
 }
+button {
+  width: 100%;
+  max-width: 320px;
+  margin: 14px auto 0 auto;
+  display: block;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: #e10600;
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+}
+
+button:active {
+  transform: scale(0.98);
+}
 
 </style>
 </head>
@@ -359,7 +384,8 @@ button:hover {
     <input type="tel" name="telefono" required>
 
     <button type="button" onclick="prevStep()">Indietro</button>
-    <button type="submit">Valuta ora</button>
+   <button type="submit">Ricevi valutazione gratuita</button>
+
   </div>
 
 </form>
