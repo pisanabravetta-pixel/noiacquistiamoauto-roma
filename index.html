@@ -67,8 +67,19 @@ button:hover {
 
 
 /* STEP */
-.step{display:none;animation:fade .3s ease}
-.step.active{display:block}
+.step{
+  display:none;
+  animation:fade .3s ease;
+}
+
+.step.active{
+  display:block;
+  background:#f9fafb;
+  border:2px solid #e10600;
+  padding:18px;
+  border-radius:10px;
+}
+
 @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
 /* PROGRESS */
