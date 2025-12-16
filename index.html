@@ -559,6 +559,27 @@ document.getElementById("autoForm").addEventListener("submit", function(e){
   }, 2200);
 });
 </script>
+<script>
+const form = document.getElementById("autoForm");
+const loader = document.getElementById("loader-box");
+const success = document.getElementById("success-message");
+
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+
+  // NASCONDE FORM
+  form.style.display = "none";
+
+  // MOSTRA LOADER
+  loader.style.display = "block";
+
+  // SIMULA VALUTAZIONE
+  setTimeout(() => {
+    loader.style.display = "none";
+    success.style.display = "block";
+  }, 2500);
+});
+</script>
 
 </body>
 </html>
