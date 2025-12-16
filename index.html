@@ -223,6 +223,18 @@ input:focus {
   border-color: #e10600;
   box-shadow: 0 0 0 2px rgba(225, 6, 0, 0.18);
 }
+/* ===== STEP 7 – Shake errore ===== */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shake 0.3s;
+}
 
 </style>
 </head>
@@ -600,6 +612,29 @@ document.getElementById("autoForm").addEventListener("submit", e => {
     document.getElementById("success-message").style.display="block";
   });
 });
+/* ===== STEP 7 – Controllo campo obbligatorio ===== */
+function nextStep() {
+  const current = steps[currentStep];
+  const field = current.querySelector("select, input");
+
+  if (field && field.value === "") {
+    field.style.border = "2px solid #e10600";
+    field.classList.add("shake");
+
+    setTimeout(() => {
+      field.style.border = "1px solid #ccc";
+      field.classList.remove("shake");
+    }, 600);
+
+    return; // BLOCCA AVANZAMENTO
+  }
+
+  if (currentStep < steps.length - 1) {
+    currentStep++;
+    showStep(currentStep);
+  }
+}
+
 </script>
 
 </body>
