@@ -408,8 +408,8 @@ input:focus {
 <div class="step active">
   <label>Marca</label>
   <p class="field-help">Seleziona la marca della tua auto</p>
+<select id="marca" name="marca" required onchange="aggiornaModelli(); nextStep();">
 
-  <select id="marca" name="marca" required onchange="handleMarcaChange()">
     <option value="">Seleziona marca</option>
     <option value="Fiat">Fiat</option>
     <option value="Volkswagen">Volkswagen</option>
