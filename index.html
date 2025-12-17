@@ -1,581 +1,1161 @@
 <!DOCTYPE html>
+
 <html lang="it">
+
 <head>
+
 <meta charset="UTF-8">
+
 <title>Noi Acquistiamo Auto Roma</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <meta name="description" content="Valutazione auto usate a Roma. Vendita rapida e trasparente.">
 
+
+
 <style>
+
 *{box-sizing:border-box}
+
 body{margin:0;font-family:Arial,sans-serif;background:#f4f6f8;color:#333}
 
+
+
 /* HEADER */
+
 header{background:#fff;padding:25px 10px;text-align:center;border-bottom:1px solid #ddd}
 
+
+
 /* MAIN */
+
 main {
-  max-width: 680px;
-  margin: 0 auto;
-  padding: 40px 15px;
+
+  max-width: 680px;
+
+  margin: 0 auto;
+
+  padding: 40px 15px;
+
 }
+
+
+
 
 
 /* FORM */
+
 form{background:#fff;padding:25px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.1)}
+
 label{display:block;margin-top:15px;font-weight:bold;font-size:14px}
+
 label {
-  display: block;
-  margin-top: 18px;
-  font-weight: bold;
-  font-size: 14px;
-  color: #222;
+
+  display: block;
+
+  margin-top: 18px;
+
+  font-weight: bold;
+
+  font-size: 14px;
+
+  color: #222;
+
 }
+
+
 
 select,input{width:100%;padding:10px;margin-top:6px;border-radius:6px;border:1px solid #ccc}
+
 select:focus,
+
 input:focus {
-  outline: none;
-  border-color: #e10600;
-  box-shadow: 0 0 0 2px rgba(225, 6, 0, 0.15);
+
+  outline: none;
+
+  border-color: #e10600;
+
+  box-shadow: 0 0 0 2px rgba(225, 6, 0, 0.15);
+
 }
+
+
 
 button {
-  margin-top: 22px;
-  width: 100%;
-  padding: 14px;
-  background: linear-gradient(90deg, #e10600, #ff4d4d);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  margin-top: 22px;
+
+  width: 100%;
+
+  padding: 14px;
+
+  background: linear-gradient(90deg, #e10600, #ff4d4d);
+
+  color: #fff;
+
+  border: none;
+
+  border-radius: 8px;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
 }
+
+
 
 button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(225,6,0,0.35);
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 6px 18px rgba(225,6,0,0.35);
+
 }
+
+
+
 
 
 button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+
 }
+
+
+
 
 
 /* STEP */
+
 .step {
-  display: none;
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.35s ease, transform 0.35s ease;
+
+  display: none;
+
+  opacity: 0;
+
+  transform: translateY(12px);
+
+  transition: opacity 0.35s ease, transform 0.35s ease;
+
 }
 
+
+
 .step.active {
-  display: block;
-  opacity: 1;
-  transform: translateY(0);
+
+  display: block;
+
+  opacity: 1;
+
+  transform: translateY(0);
+
 }
+
+
 
 /* PROGRESS */
+
 .progress{width:100%;background:#eee;height:8px;border-radius:6px;margin-bottom:25px;overflow:hidden}
+
 .progress-bar{height:100%;width:0;background:linear-gradient(90deg,#e10600,#ff4d4d);transition:.4s}
 
+
+
 /* SUCCESS */
+
 .success-message{display:none;background:#fff;padding:30px;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,.12);text-align:center}
+
 .success-message h2{color:#1b8f3a}
 
+
+
 /* WHY US */
+
 section{max-width:600px;margin:40px auto;background:#fff;padding:30px;border-radius:8px;text-align:center}
 
+
+
 /* FOOTER */
+
 footer{text-align:center;padding:20px;font-size:14px;color:#666}
+
 .trust-box {
-  background: #fff4f4;
-  border: 1px solid #f1c4c4;
-  color: #333;
-  padding: 16px;
-  border-radius: 8px;
-  font-size: 15px;
-  text-align: center;
-  margin-bottom: 22px;
+
+  background: #fff4f4;
+
+  border: 1px solid #f1c4c4;
+
+  color: #333;
+
+  padding: 16px;
+
+  border-radius: 8px;
+
+  font-size: 15px;
+
+  text-align: center;
+
+  margin-bottom: 22px;
+
 }
+
+
 
 .trust-box span {
-  display: block;
-  margin-top: 6px;
-  font-size: 13px;
-  color: #666;
-}
-button {
-  width: 100%;
-  padding: 14px;
-  background: #e10600;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 18px;
+
+  display: block;
+
+  margin-top: 6px;
+
+  font-size: 13px;
+
+  color: #666;
+
 }
 
+button {
+
+  width: 100%;
+
+  padding: 14px;
+
+  background: #e10600;
+
+  color: #fff;
+
+  border: none;
+
+  border-radius: 8px;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  margin-top: 18px;
+
+}
+
+
+
 button:hover {
-  background: #c40500;
+
+  background: #c40500;
+
 }
+
 .step.active {
-  margin-top: 20px;
+
+  margin-top: 20px;
+
 }
+
 /* PROGRESS BAR */
+
 .progress-wrap{
-  width:100%;
-  height:6px;
-  background:#e5e7eb;
-  border-radius:10px;
-  overflow:hidden;
-  margin:18px 0 24px 0;
+
+  width:100%;
+
+  height:6px;
+
+  background:#e5e7eb;
+
+  border-radius:10px;
+
+  overflow:hidden;
+
+  margin:18px 0 24px 0;
+
 }
+
+
 
 #progressBar{
-  width:0%;
-  height:100%;
-  background:#e10600;
-  transition:width .3s ease;
+
+  width:0%;
+
+  height:100%;
+
+  background:#e10600;
+
+  transition:width .3s ease;
+
 }
+
 button {
-  width: 100%;
-  max-width: 320px;
-  margin: 14px auto 0 auto;
-  display: block;
-  padding: 14px;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  background: #e10600;
-  color: #fff;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-  transition: transform .15s ease, box-shadow .15s ease;
+
+  width: 100%;
+
+  max-width: 320px;
+
+  margin: 14px auto 0 auto;
+
+  display: block;
+
+  padding: 14px;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  border-radius: 10px;
+
+  border: none;
+
+  cursor: pointer;
+
+  background: #e10600;
+
+  color: #fff;
+
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+
+  transition: transform .15s ease, box-shadow .15s ease;
+
 }
+
+
 
 button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+
 }
+
+
 
 button:active {
-  transform: scale(0.98);
+
+  transform: scale(0.98);
+
 }
+
 .trust-box {
-  margin: 14px auto 18px auto;
-  padding: 12px 16px;
-  max-width: 520px;
-  background: #111827;
-  color: #ffffff;
-  font-size: 14px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+
+  margin: 14px auto 18px auto;
+
+  padding: 12px 16px;
+
+  max-width: 520px;
+
+  background: #111827;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  border-radius: 10px;
+
+  text-align: center;
+
+  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+
 }
+
 .field-help {
-  margin: 4px 0 10px 0;
-  font-size: 13px;
-  color: #6b7280;
-  text-align: center;
+
+  margin: 4px 0 10px 0;
+
+  font-size: 13px;
+
+  color: #6b7280;
+
+  text-align: center;
+
 }
+
 .btn-primary {
-  width: 100%;
-  margin-top: 14px;
-  padding: 14px;
-  background: #e10600;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background 0.2s ease;
+
+  width: 100%;
+
+  margin-top: 14px;
+
+  padding: 14px;
+
+  background: #e10600;
+
+  color: #fff;
+
+  border: none;
+
+  border-radius: 8px;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+
 }
+
+
 
 .btn-primary:hover {
-  background: #b90500;
+
+  background: #b90500;
+
 }
+
+
 
 .btn-secondary {
-  width: 100%;
-  margin-top: 10px;
-  padding: 12px;
-  background: #f3f4f6;
-  color: #111;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  font-size: 14px;
-  cursor: pointer;
+
+  width: 100%;
+
+  margin-top: 10px;
+
+  padding: 12px;
+
+  background: #f3f4f6;
+
+  color: #111;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+
+  cursor: pointer;
+
 }
+
 /* ===== STEP 6.2 – Focus campi (UX) ===== */
+
 select:focus,
+
 input:focus {
-  outline: none;
-  border-color: #e10600;
-  box-shadow: 0 0 0 2px rgba(225, 6, 0, 0.18);
+
+  outline: none;
+
+  border-color: #e10600;
+
+  box-shadow: 0 0 0 2px rgba(225, 6, 0, 0.18);
+
 }
+
 /* ===== STEP 7 – Shake errore ===== */
+
 @keyframes shake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-4px); }
-  50% { transform: translateX(4px); }
-  75% { transform: translateX(-4px); }
-  100% { transform: translateX(0); }
+
+  0% { transform: translateX(0); }
+
+  25% { transform: translateX(-4px); }
+
+  50% { transform: translateX(4px); }
+
+  75% { transform: translateX(-4px); }
+
+  100% { transform: translateX(0); }
+
 }
+
+
 
 .shake {
-  animation: shake 0.3s;
+
+  animation: shake 0.3s;
+
 }
+
 /* ===== LOADER ===== */
+
 .loader {
-  width: 48px;
-  height: 48px;
-  border: 5px solid #eee;
-  border-top: 5px solid #e10600;
-  border-radius: 50%;
-  margin: 0 auto;
-  animation: spin 1s linear infinite;
+
+  width: 48px;
+
+  height: 48px;
+
+  border: 5px solid #eee;
+
+  border-top: 5px solid #e10600;
+
+  border-radius: 50%;
+
+  margin: 0 auto;
+
+  animation: spin 1s linear infinite;
+
 }
+
+
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+
+  to {
+
+    transform: rotate(360deg);
+
+  }
+
 }
 
+
+
 </style>
+
 </head>
+
+
 
 <body>
 
+
+
 <header class="hero">
-  <div class="hero-inner">
-    <h1>
-      Valutiamo la tua auto<br>
-      <span>in meno di 30 secondi</span>
-    </h1>
 
-    <p class="hero-sub">
-      Acquistiamo auto usate a <strong>Roma e provincia</strong><br>
-      Valutazione gratuita • Nessun obbligo • Pagamento immediato
-    </p>
+  <div class="hero-inner">
 
-    <div class="trust">
-      ⭐⭐⭐⭐⭐ Oltre 1.000 valutazioni positive
-    </div>
-  </div>
+    <h1>
+
+      Valutiamo la tua auto<br>
+
+      <span>in meno di 30 secondi</span>
+
+    </h1>
+
+
+
+    <p class="hero-sub">
+
+      Acquistiamo auto usate a <strong>Roma e provincia</strong><br>
+
+      Valutazione gratuita • Nessun obbligo • Pagamento immediato
+
+    </p>
+
+
+
+    <div class="trust">
+
+      ⭐⭐⭐⭐⭐ Oltre 1.000 valutazioni positive
+
+    </div>
+
+  </div>
+
 </header>
 
 
+
+
+
 <main>
+
 <div style="
-  max-width:520px;
-  margin:0 auto;
-  padding:20px 15px;
+
+  max-width:520px;
+
+  margin:0 auto;
+
+  padding:20px 15px;
+
 ">
+
+
 
 <section style="text-align:center;margin-bottom:40px;">
-  <h1 style="font-size:32px;margin-bottom:15px;">
-    Acquistiamo la tua auto a Roma
-    <span style="color:#e10600;">in 24 ore</span>
-  </h1>
 
-  <p style="font-size:18px;color:#555;max-width:500px;margin:0 auto;">
-    Valutazione gratuita e senza impegno.  
-    Pagamento sicuro e passaggio immediato.
-  </p>
+  <h1 style="font-size:32px;margin-bottom:15px;">
 
-  <ul style="list-style:none;padding:0;margin:25px 0;font-size:16px;">
-    <li>✅ Qualsiasi marca e modello</li>
-    <li>✅ Nessun obbligo di vendita</li>
-  </ul>
+    Acquistiamo la tua auto a Roma
 
-  <button onclick="document.getElementById('form-wrapper').scrollIntoView({behavior:'smooth'})">
-    Valuta la tua auto gratis
-  </button>
+    <span style="color:#e10600;">in 24 ore</span>
+
+  </h1>
+
+
+
+  <p style="font-size:18px;color:#555;max-width:500px;margin:0 auto;">
+
+    Valutazione gratuita e senza impegno.  
+
+    Pagamento sicuro e passaggio immediato.
+
+  </p>
+
+
+
+  <ul style="list-style:none;padding:0;margin:25px 0;font-size:16px;">
+
+    <li>✅ Qualsiasi marca e modello</li>
+
+    <li>✅ Nessun obbligo di vendita</li>
+
+  </ul>
+
+
+
+  <button onclick="document.getElementById('form-wrapper').scrollIntoView({behavior:'smooth'})">
+
+    Valuta la tua auto gratis
+
+  </button>
+
 </section>
+
 </div>
 
-  <div style="
-  background:#1f2937;
-  color:#ffffff;
-  padding:22px 18px;
-  border-radius:12px;
-  text-align:center;
-  margin-bottom:24px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.18);
+
+
+  <div style="
+
+  background:#1f2937;
+
+  color:#ffffff;
+
+  padding:22px 18px;
+
+  border-radius:12px;
+
+  text-align:center;
+
+  margin-bottom:24px;
+
+  box-shadow:0 8px 20px rgba(0,0,0,0.18);
+
 ">
 
-  <div style="font-size:17px;font-weight:700;margin-bottom:6px;">
-    ⭐ Oltre 1.000 auto valutate
-  </div>
 
-  <div style="font-size:14px;opacity:0.9;">
-    Roma e provincia • Nessun obbligo di vendita
-  </div>
+
+  <div style="font-size:17px;font-weight:700;margin-bottom:6px;">
+
+    ⭐ Oltre 1.000 auto valutate
+
+  </div>
+
+
+
+  <div style="font-size:14px;opacity:0.9;">
+
+    Roma e provincia • Nessun obbligo di vendita
+
+  </div>
+
+
+
+</div>
+
+
+
+ <div style="text-align:center;margin-bottom:25px;">
+
+  <h1 style="
+
+    font-size:26px;
+
+    line-height:1.2;
+
+    margin-bottom:10px;
+
+    color:#111;
+
+  ">
+
+    Vendi la tua auto a Roma<br>
+
+    in modo semplice e veloce
+
+  </h1>
+
+
+
+  <p style="
+
+    font-size:15px;
+
+    color:#555;
+
+    margin-bottom:15px;
+
+  ">
+
+    Valutazione gratuita e senza impegno.<br>
+
+    Pagamento rapido e assistenza dedicata.
+
+  </p>
+
+
+
+ 
+
+
 
 </div>
 
- <div style="text-align:center;margin-bottom:25px;">
-  <h1 style="
-    font-size:26px;
-    line-height:1.2;
-    margin-bottom:10px;
-    color:#111;
-  ">
-    Vendi la tua auto a Roma<br>
-    in modo semplice e veloce
-  </h1>
+ 
 
-  <p style="
-    font-size:15px;
-    color:#555;
-    margin-bottom:15px;
-  ">
-    Valutazione gratuita e senza impegno.<br>
-    Pagamento rapido e assistenza dedicata.
-  </p>
-
- 
-
-</div>
- 
 <main>
 
-  <!-- TRUST BOX -->
-  <div style="
-    background:#e10600;
-    color:#ffffff;
-    padding:16px;
-    border-radius:10px;
-    font-size:15px;
-    margin-bottom:18px;
-    box-shadow:0 6px 16px rgba(0,0,0,0.12);
-    text-align:center;
-  ">
-    👇 Compila il modulo in meno di <strong>30 secondi</strong><br>
-    <span style="opacity:0.9">
-      Dati protetti • Valutazione gratuita
-    </span>
-  </div>
 
-  <!-- DESCRIZIONE -->
-  <p style="
-    text-align:center;
-    margin:0 auto 18px auto;
-    max-width:520px;
-    color:#444;
-    font-size:15px;
-  ">
-    Inserisci i dati dell’auto e ricevi una valutazione gratuita, senza impegno.
-  </p>
-  
+
+  <!-- TRUST BOX -->
+
+  <div style="
+
+    background:#e10600;
+
+    color:#ffffff;
+
+    padding:16px;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    margin-bottom:18px;
+
+    box-shadow:0 6px 16px rgba(0,0,0,0.12);
+
+    text-align:center;
+
+  ">
+
+    👇 Compila il modulo in meno di <strong>30 secondi</strong><br>
+
+    <span style="opacity:0.9">
+
+      Dati protetti • Valutazione gratuita
+
+    </span>
+
+  </div>
+
+
+
+  <!-- DESCRIZIONE -->
+
+  <p style="
+
+    text-align:center;
+
+    margin:0 auto 18px auto;
+
+    max-width:520px;
+
+    color:#444;
+
+    font-size:15px;
+
+  ">
+
+    Inserisci i dati dell’auto e ricevi una valutazione gratuita, senza impegno.
+
+  </p>
+
+  
+
 <!-- FORM -->
+
 <div id="form-wrapper">
+
 <form id="autoForm">
 
-  <!-- STEP TEXT -->
-  <div id="step-text" style="
-    text-align:center;
-    font-size:14px;
-    font-weight:600;
-    color:#111;
-    margin:12px 0 14px 0;
-  ">
-    Passaggio 1 di 5 – Marca
-  </div>
 
-  <!-- PROGRESS BAR -->
-  <div class="progress-wrap">
-    <div id="progressBar"></div>
-  </div>
+
+  <!-- STEP TEXT -->
+
+  <div id="step-text" style="
+
+    text-align:center;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:#111;
+
+    margin:12px 0 14px 0;
+
+  ">
+
+    Passaggio 1 di 5 – Marca
+
+  </div>
+
+
+
+  <!-- PROGRESS BAR -->
+
+  <div class="progress-wrap">
+
+    <div id="progressBar"></div>
+
+  </div>
+
 <div class="trust-box">
-  🔒 Dati protetti &nbsp;•&nbsp; 💰 Valutazione gratuita &nbsp;•&nbsp; ❌ Nessun obbligo
+
+  🔒 Dati protetti &nbsp;•&nbsp; 💰 Valutazione gratuita &nbsp;•&nbsp; ❌ Nessun obbligo
+
 </div>
 
+
+
 <!-- FORM WRAPPER -->
+
 <div id="form-wrapper">
 
+
+
 <form id="autoForm" action="https://formsubmit.co/pisanabravetta@gmail.com" method="POST">
-  
+
+  
+
 <input type="hidden" name="_captcha" value="false">
+
 <input type="hidden" name="_template" value="table">
+
 <input type="hidden" name="_next" value="">
 
 
-  <!-- STEP 1 -->
-  <div class="step active">
-    <label>Marca</label>
-    <select id="marca" name="marca" required>
-      <option value="">Seleziona marca</option>
-      <option>Fiat</option>
-      <option>Volkswagen</option>
-      <option>Ford</option>
-      <option>BMW</option>
-      <option>Audi</option>
-      <option>Mercedes</option>
-      <option>Opel</option>
-      <option>Peugeot</option>
-      <option>Renault</option>
-      <option>Toyota</option>
-    </select>
-    <button type="button" onclick="nextStep()">Avanti →</button>
-  </div>
 
-  <!-- STEP 2 -->
-  <div class="step">
-    <label>Modello</label>
-    <select id="modello" name="modello" required></select>
-    <button type="button" onclick="prevStep()">← Indietro</button>
-    <button type="button" onclick="nextStep()">Avanti →</button>
-  </div>
 
-  <!-- STEP 3 -->
-  <div class="step">
-    <label>Anno</label>
-    <select id="anno" name="anno" required></select>
-    <button type="button" onclick="prevStep()">← Indietro</button>
-    <button type="button" onclick="nextStep()">Avanti →</button>
-  </div>
 
-  <!-- STEP 4 -->
-  <div class="step">
-    <label>Chilometri</label>
-    <select name="km" required>
-      <option value="">Seleziona km</option>
-      <option>0 - 50.000</option>
-      <option>50.000 - 100.000</option>
-      <option>100.000 - 150.000</option>
-      <option>150.000 - 200.000</option>
-      <option>200.000+</option>
-    </select>
-    <button type="button" onclick="prevStep()">← Indietro</button>
-    <button type="button" onclick="nextStep()">Avanti →</button>
-  </div>
+  <!-- STEP 1 -->
 
-  <!-- STEP 5 -->
-  <div class="step">
-    <label>Nome</label>
-    <input type="text" name="nome" required>
+  <div class="step active">
 
-    <label>Telefono</label>
-    <input type="tel" name="telefono" required>
+    <label>Marca</label>
 
-    <button type="button" onclick="prevStep()">← Indietro</button>
-    <button type="submit">Ricevi valutazione</button>
-  </div>
+    <select id="marca" name="marca" required>
+
+      <option value="">Seleziona marca</option>
+
+      <option>Fiat</option>
+
+      <option>Volkswagen</option>
+
+      <option>Ford</option>
+
+      <option>BMW</option>
+
+      <option>Audi</option>
+
+      <option>Mercedes</option>
+
+      <option>Opel</option>
+
+      <option>Peugeot</option>
+
+      <option>Renault</option>
+
+      <option>Toyota</option>
+
+    </select>
+
+    <button type="button" onclick="nextStep()">Avanti →</button>
+
+  </div>
+
+
+
+  <!-- STEP 2 -->
+
+  <div class="step">
+
+    <label>Modello</label>
+
+    <select id="modello" name="modello" required></select>
+
+    <button type="button" onclick="prevStep()">← Indietro</button>
+
+    <button type="button" onclick="nextStep()">Avanti →</button>
+
+  </div>
+
+
+
+  <!-- STEP 3 -->
+
+  <div class="step">
+
+    <label>Anno</label>
+
+    <select id="anno" name="anno" required></select>
+
+    <button type="button" onclick="prevStep()">← Indietro</button>
+
+    <button type="button" onclick="nextStep()">Avanti →</button>
+
+  </div>
+
+
+
+  <!-- STEP 4 -->
+
+  <div class="step">
+
+    <label>Chilometri</label>
+
+    <select name="km" required>
+
+      <option value="">Seleziona km</option>
+
+      <option>0 - 50.000</option>
+
+      <option>50.000 - 100.000</option>
+
+      <option>100.000 - 150.000</option>
+
+      <option>150.000 - 200.000</option>
+
+      <option>200.000+</option>
+
+    </select>
+
+    <button type="button" onclick="prevStep()">← Indietro</button>
+
+    <button type="button" onclick="nextStep()">Avanti →</button>
+
+  </div>
+
+
+
+  <!-- STEP 5 -->
+
+  <div class="step">
+
+    <label>Nome</label>
+
+    <input type="text" name="nome" required>
+
+
+
+    <label>Telefono</label>
+
+    <input type="tel" name="telefono" required>
+
+
+
+    <button type="button" onclick="prevStep()">← Indietro</button>
+
+    <button type="submit">Ricevi valutazione</button>
+
+  </div>
+
 </form>
+
 <div id="loader-box" style="display:none; text-align:center; margin-top:40px;">
-  <h3>⏳ Stiamo valutando la tua auto…</h3>
-  <p>Attendi qualche secondo</p>
+
+  <h3>⏳ Stiamo valutando la tua auto…</h3>
+
+  <p>Attendi qualche secondo</p>
+
 </div>
+
+
 
 <div id="success-message" style="display:none; text-align:center; margin-top:40px;">
-  <h2>✅ Richiesta inviata con successo!</h2>
-  <p>Ti ricontatteremo a breve.</p>
+
+  <h2>✅ Richiesta inviata con successo!</h2>
+
+  <p>Ti ricontatteremo a breve.</p>
+
 </div>
+
+
 
 <!-- LOADER -->
+
 <div id="loader" style="display:none;text-align:center;margin-top:30px">
-  <h3>Stiamo valutando la tua auto…</h3>
+
+  <h3>Stiamo valutando la tua auto…</h3>
+
 </div>
+
+
 
 <!-- SUCCESS -->
+
 <div id="success" style="display:none;text-align:center;margin-top:30px">
-  <h2>✅ Richiesta inviata!</h2>
-  <p>Ti ricontatteremo a breve.</p>
+
+  <h2>✅ Richiesta inviata!</h2>
+
+  <p>Ti ricontatteremo a breve.</p>
+
 </div>
 
+
+
 <script>
+
 /* ===== MODELLI ===== */
+
 const modelli = {
-  Fiat:["Panda","500","Punto","Tipo"],
-  Volkswagen:["Golf","Polo","Passat"],
-  Ford:["Fiesta","Focus"],
-  BMW:["Serie 1","Serie 3"],
-  Audi:["A3","A4"],
-  Mercedes:["Classe A","Classe C"],
-  Opel:["Corsa","Astra"],
-  Peugeot:["208","308"],
-  Renault:["Clio","Megane"],
-  Toyota:["Yaris","Corolla"]
+
+  Fiat:["Panda","500","Punto","Tipo"],
+
+  Volkswagen:["Golf","Polo","Passat"],
+
+  Ford:["Fiesta","Focus"],
+
+  BMW:["Serie 1","Serie 3"],
+
+  Audi:["A3","A4"],
+
+  Mercedes:["Classe A","Classe C"],
+
+  Opel:["Corsa","Astra"],
+
+  Peugeot:["208","308"],
+
+  Renault:["Clio","Megane"],
+
+  Toyota:["Yaris","Corolla"]
+
 };
 
+
+
 const steps = document.querySelectorAll(".step");
+
 let currentStep = 0;
 
+
+
 function showStep(i){
-  steps.forEach((s,idx)=>s.classList.toggle("active", idx===i));
+
+  steps.forEach((s,idx)=>s.classList.toggle("active", idx===i));
+
 }
+
+
 
 function nextStep(){
-  const field = steps[currentStep].querySelector("select,input");
-  if(field && field.value===""){
-    field.style.border="2px solid red";
-    return;
-  }
-  field.style.border="";
-  currentStep++;
-  showStep(currentStep);
+
+  const field = steps[currentStep].querySelector("select,input");
+
+  if(field && field.value===""){
+
+    field.style.border="2px solid red";
+
+    return;
+
+  }
+
+  field.style.border="";
+
+  currentStep++;
+
+  showStep(currentStep);
+
 }
+
+
 
 function prevStep(){
-  currentStep--;
-  showStep(currentStep);
+
+  currentStep--;
+
+  showStep(currentStep);
+
 }
+
+
 
 /* MODELLI */
+
 document.getElementById("marca").addEventListener("change",function(){
-  const modello = document.getElementById("modello");
-  modello.innerHTML="<option value=''>Seleziona modello</option>";
-  modelli[this.value]?.forEach(m=>{
-    modello.innerHTML+=`<option>${m}</option>`;
-  });
+
+  const modello = document.getElementById("modello");
+
+  modello.innerHTML="<option value=''>Seleziona modello</option>";
+
+  modelli[this.value]?.forEach(m=>{
+
+    modello.innerHTML+=`<option>${m}</option>`;
+
+  });
+
 });
+
+
 
 /* ANNI */
+
 const anno = document.getElementById("anno");
+
 for(let y=new Date().getFullYear();y>=1995;y--){
-  anno.innerHTML+=`<option>${y}</option>`;
+
+  anno.innerHTML+=`<option>${y}</option>`;
+
 }
 
+
+
 /* SUBMIT */
+
 <script>
+
 document.getElementById("autoForm").addEventListener("submit", function(e){
-  e.preventDefault();
 
-  const form = this;
-  const loader = document.getElementById("loader-box");
-  const success = document.getElementById("success-message");
+  e.preventDefault();
 
-  // NASCONDE FORM
-  form.style.display = "none";
 
-  // MOSTRA LOADER
-  loader.style.display = "block";
 
-  // INVIO EMAIL (FormSubmit)
-  fetch(form.action, {
-    method: "POST",
-    body: new FormData(form)
-  });
+  const form = this;
 
-  // DOPO 3 SECONDI MOSTRA SUCCESSO
-  setTimeout(() => {
-    loader.style.display = "none";
-    success.style.display = "block";
-  }, 3000);
+  const loader = document.getElementById("loader-box");
+
+  const success = document.getElementById("success-message");
+
+
+
+  // NASCONDE FORM
+
+  form.style.display = "none";
+
+
+
+  // MOSTRA LOADER
+
+  loader.style.display = "block";
+
+
+
+  // INVIO EMAIL (FormSubmit)
+
+  fetch(form.action, {
+
+    method: "POST",
+
+    body: new FormData(form)
+
+  });
+
+
+
+  // DOPO 3 SECONDI MOSTRA SUCCESSO
+
+  setTimeout(() => {
+
+    loader.style.display = "none";
+
+    success.style.display = "block";
+
+  }, 3000);
+
 });
+
 </script>
 
+
+
 </body>
+
 </html>
