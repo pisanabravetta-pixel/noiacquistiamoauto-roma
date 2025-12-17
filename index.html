@@ -991,47 +991,69 @@ input:focus {
 
 </div>
 
-
-
 <script>
+document.addEventListener("DOMContentLoaded", function () {
 
-/* ===== MODELLI ===== */
+  /* ===== MODELLI ===== */
+  const modelli = {
+    Fiat:["Panda","500","Punto","Tipo","Doblo"],
+    Volkswagen:["Golf","Polo","Passat","Tiguan"],
+    Ford:["Fiesta","Focus","Kuga","Puma"],
+    BMW:["Serie 1","Serie 3","X1","X3"],
+    Audi:["A3","A4","A6","Q3","Q5"],
+    Mercedes:["Classe A","Classe C","Classe E","GLA","GLC"],
+    Opel:["Corsa","Astra","Mokka"],
+    Peugeot:["208","308","3008"],
+    Renault:["Clio","Captur","Megane"],
+    Toyota:["Yaris","Corolla","RAV4"]
+  };
 
-const modelli = {
+  window.aggiornaModelli = function () {
+    const marca = document.getElementById("marca").value;
+    const modello = document.getElementById("modello");
+    modello.innerHTML = "<option value=''>Seleziona modello</option>";
 
-  Fiat:["Panda","500","Punto","Tipo"],
+    if (modelli[marca]) {
+      modelli[marca].forEach(m => {
+        const o = document.createElement("option");
+        o.value = m;
+        o.textContent = m;
+        modello.appendChild(o);
+      });
+    }
+  };
 
-  Volkswagen:["Golf","Polo","Passat"],
+  /* ===== STEP SYSTEM ===== */
+  let currentStep = 0;
+  const steps = document.querySelectorAll(".step");
 
-  Ford:["Fiesta","Focus"],
+  function showStep(i) {
+    steps.forEach((s, idx) =>
+      s.classList.toggle("active", idx === i)
+    );
+  }
 
-  BMW:["Serie 1","Serie 3"],
+  window.nextStep = function () {
+    const field = steps[currentStep].querySelector("select, input");
+    if (field && field.value === "") return;
 
-  Audi:["A3","A4"],
+    if (currentStep < steps.length - 1) {
+      currentStep++;
+      showStep(currentStep);
+    }
+  };
 
-  Mercedes:["Classe A","Classe C"],
+  window.prevStep = function () {
+    if (currentStep > 0) {
+      currentStep--;
+      showStep(currentStep);
+    }
+  };
 
-  Opel:["Corsa","Astra"],
+  showStep(0);
 
-  Peugeot:["208","308"],
-
-  Renault:["Clio","Megane"],
-
-  Toyota:["Yaris","Corolla"]
-
-};
-
-
-
-const steps = document.querySelectorAll(".step");
-
-let currentStep = 0;
-
-
-
-function showStep(i){
-
-  steps.forEach((s,idx)=>s.classList.toggle("active", idx===i));
+});
+</script>
 
 }
 
