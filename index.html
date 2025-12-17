@@ -405,7 +405,12 @@ input:focus {
 <!-- FORM WRAPPER -->
 <div id="form-wrapper">
 
-<form id="autoForm">
+<form id="autoForm" action="https://formsubmit.co/pisanabravetta@gmail.com" method="POST">
+  
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_next" value="">
+
 
   <!-- STEP 1 -->
   <div class="step active">
@@ -469,6 +474,15 @@ input:focus {
     <button type="submit">Ricevi valutazione</button>
   </div>
 </form>
+<div id="loader-box" style="display:none; text-align:center; margin-top:40px;">
+  <h3>⏳ Stiamo valutando la tua auto…</h3>
+  <p>Attendi qualche secondo</p>
+</div>
+
+<div id="success-message" style="display:none; text-align:center; margin-top:40px;">
+  <h2>✅ Richiesta inviata con successo!</h2>
+  <p>Ti ricontatteremo a breve.</p>
+</div>
 
 <!-- LOADER -->
 <div id="loader" style="display:none;text-align:center;margin-top:30px">
@@ -535,35 +549,33 @@ for(let y=new Date().getFullYear();y>=1995;y--){
 }
 
 /* SUBMIT */
-document.getElementById("autoForm").addEventListener("submit",function(e){
+<script>
+document.getElementById("autoForm").addEventListener("submit", function(e){
   e.preventDefault();
 
-  this.style.display="none";
-  document.getElementById("loader").style.display="block";
+  const form = this;
+  const loader = document.getElementById("loader-box");
+  const success = document.getElementById("success-message");
 
-  fetch("https://formsubmit.co/ajax/pisanabravetta@gmail.com",{
-    method:"POST",
-    headers:{ "Content-Type":"application/json" },
-    body:JSON.stringify({
-      marca:this.marca.value,
-      modello:this.modello.value,
-      anno:this.anno.value,
-      km:this.km.value,
-      nome:this.nome.value,
-      telefono:this.telefono.value,
-      _captcha:"false"
-    })
-  }).then(()=>{
-    setTimeout(()=>{
-      document.getElementById("loader").style.display="none";
-      document.getElementById("success").style.display="block";
-    },2500);
+  // NASCONDE FORM
+  form.style.display = "none";
+
+  // MOSTRA LOADER
+  loader.style.display = "block";
+
+  // INVIO EMAIL (FormSubmit)
+  fetch(form.action, {
+    method: "POST",
+    body: new FormData(form)
   });
+
+  // DOPO 3 SECONDI MOSTRA SUCCESSO
+  setTimeout(() => {
+    loader.style.display = "none";
+    success.style.display = "block";
+  }, 3000);
 });
-
-showStep(0);
 </script>
-
 
 </body>
 </html>
